@@ -6,7 +6,7 @@
 
 #import "UXView.h"
 
-@import  AppKit
+@import  AppKit;
 
 @class NSBox, NSCursor, NSLayoutConstraint, NSString, _UXContainerView;
 

@@ -5,7 +5,7 @@
 //
 
 
-@import  AppKit
+@import  AppKit;
 
 @class NSString, UXAuxiliaryNavigationStore;
 

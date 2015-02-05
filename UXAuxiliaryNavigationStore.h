@@ -6,7 +6,7 @@
 
 
 
-@import  AppKit
+@import  AppKit;
 
 @class NSMutableDictionary, NSString, UXSourceController;
 
