@@ -6,7 +6,7 @@
 
 
 
-#import "NSCopying.h"
+@import  AppKit
 
 @class NSMutableIndexSet;
 

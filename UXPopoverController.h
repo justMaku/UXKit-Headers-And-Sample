@@ -6,7 +6,7 @@
 
 #import "UXViewController.h"
 
-#import "NSPopoverDelegate.h"
+@import  AppKit
 
 @class NSArray, NSString, UXPopover;
 

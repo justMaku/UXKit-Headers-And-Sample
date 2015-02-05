@@ -6,7 +6,7 @@
 
 #import "UXView.h"
 
-#import "NSAccessibilityGroup.h"
+@import  AppKit
 #import "UXBarPositioning.h"
 
 @class NSColor, NSString, UXView<_UXBarItemsContainer>, _UXSinglePixelLine;

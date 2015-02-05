@@ -5,7 +5,7 @@
 //
 
 
-#import "NSSecureCoding.h"
+@import  AppKit
 
 @class NSString, UXAuxiliaryNavigationStore;
 

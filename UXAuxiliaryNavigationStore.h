@@ -6,7 +6,7 @@
 
 
 
-#import "NSSecureCoding.h"
+@import  AppKit
 
 @class NSMutableDictionary, NSString, UXSourceController;
 

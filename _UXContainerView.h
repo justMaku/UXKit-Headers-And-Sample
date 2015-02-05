@@ -6,7 +6,7 @@
 
 #import "UXView.h"
 
-#import "NSAccessibilityGroup.h"
+@import  AppKit
 
 @class NSString;
 

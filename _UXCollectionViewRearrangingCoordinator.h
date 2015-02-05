@@ -6,9 +6,9 @@
 
 
 
-#import "NSDraggingDestination.h"
-#import "NSDraggingSource.h"
-#import "NSGestureRecognizerDelegate.h"
+@import  AppKit
+@import  AppKit
+@import  AppKit
 #import "UXCollectionViewLayoutProxyDelegate.h"
 
 @class NSArray, NSGestureRecognizer, NSString, UXCollectionView, UXCollectionViewLayout, _UXCollectionViewLayoutProxy;

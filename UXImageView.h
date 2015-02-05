@@ -6,7 +6,7 @@
 
 #import "UXView.h"
 
-#import "NSAccessibilityImage.h"
+@import  AppKit
 
 @class NSImage, NSString;
 

@@ -6,7 +6,7 @@
 
 #import "UXView.h"
 
-#import "NSAccessibilityStaticText.h"
+@import  AppKit
 
 @class NSAttributedString, NSColor, NSFont, NSString, NSTextField;
 
