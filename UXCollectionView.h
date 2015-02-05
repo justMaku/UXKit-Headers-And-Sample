@@ -4,16 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSScrollView.h"
+@import AppKit;
 
-@class CALayer, NSArray, NSIndexPath, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<UXCollectionViewAccessibilityDelegate>, NSObject<UXCollectionViewDataSource>, NSObject<UXCollectionViewDelegate>, UXCollectionDocumentView, UXCollectionViewData, UXCollectionViewIndexPathsSet, UXCollectionViewLayout, UXCollectionViewMutableIndexPathsSet, UXCollectionViewUpdate, _UXCollectionViewRearrangingCoordinator;
+#import "UXCollectionViewLayout.h"
+#import "UXCollectionViewIndexPathsSet.h"
+#import "UXCollectionViewData.h"
+#import "UXCollectionViewUpdate.h"
+#import "UXCollectionViewDelegate-Protocol.h"
+#import "UXCollectionViewDataSource-Protocol.h"
+#import "UXCollectionDocumentView.h"
+#import "UXCollectionViewMutableIndexPathsSet.h"
+
+
+@class CALayer, NSArray, NSIndexPath, NSMutableArray, NSMutableDictionary, NSMutableSet, UXCollectionDocumentView, UXCollectionViewData, UXCollectionViewIndexPathsSet, UXCollectionViewLayout, UXCollectionViewMutableIndexPathsSet, UXCollectionViewUpdate, _UXCollectionViewRearrangingCoordinator;
 
 @interface UXCollectionView : NSScrollView
 {
     UXCollectionDocumentView *_collectionDocumentView;
     NSObject<UXCollectionViewDataSource> *_dataSource;
     NSObject<UXCollectionViewDelegate> *_delegate;
-    NSObject<UXCollectionViewAccessibilityDelegate> *_accessibilityDelegate;
     UXCollectionViewLayout *_layout;
     UXCollectionViewMutableIndexPathsSet *_indexPathsForSelectedItems;
     NSMutableDictionary *_cellReuseQueues;
@@ -312,7 +321,6 @@
 - (id)indexPathsForSelectedItems;
 - (BOOL)_dataSourceImplementsNumberOfSections;
 - (void)_reloadDataIfNeeded;
-@property(nonatomic) __weak NSObject<UXCollectionViewAccessibilityDelegate> *accessibilityDelegate; // @synthesize accessibilityDelegate=_accessibilityDelegate;
 @property(nonatomic) __weak NSObject<UXCollectionViewDataSource> *dataSource; // @synthesize dataSource=_dataSource;
 @property(nonatomic) __weak NSObject<UXCollectionViewDelegate> *delegate; // @synthesize delegate=_delegate;
 - (id)_visibleDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;

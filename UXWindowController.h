@@ -4,15 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSWindowController.h"
+@import AppKit;
 
-#import "NSToolbarDelegate.h"
-#import "NSWindowDelegate.h"
-#import "_UXAccessoryBarContainer.h"
+#import "UXAccessoryBarContainerProtocol.h"
 
 @class NSString, NSTitlebarAccessoryViewController, NSToolbarItem, UXToolbar, UXViewController;
 
-@interface UXWindowController : NSWindowController <NSToolbarDelegate, _UXAccessoryBarContainer, NSWindowDelegate>
+@interface UXWindowController : NSWindowController <NSToolbarDelegate, UXAccessoryBarContainer, NSWindowDelegate>
 {
     NSTitlebarAccessoryViewController *_titlebarAccessoryViewController;
     UXToolbar *_currentAccessoryToolbar;
@@ -21,7 +19,7 @@
 
 + (id)defaultWindow;
 @property __weak NSToolbarItem *navigationBarToolbarItem; // @synthesize navigationBarToolbarItem=_navigationBarToolbarItem;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)windowDidBecomeFirstResponder:(id)arg1;
 - (void)windowDidRecalculateKeyViewLoop:(id)arg1;
 - (void)windowWillRecalculateKeyViewLoop:(id)arg1;
