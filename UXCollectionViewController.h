@@ -4,10 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <UXKit/UXViewController.h>
+#import "UXViewController.h"
 
-#import "UXCollectionViewDataSource.h"
-#import "UXCollectionViewDelegate.h"
+#import "UXCollectionViewDataSource-Protocol.h"
+#import "UXCollectionViewDelegate-Protocol.h"
 
 @class NSString, UXCollectionView, UXCollectionViewLayout;
 
@@ -19,7 +19,7 @@
 
 + (Class)collectionViewClass;
 @property(retain, nonatomic) UXCollectionView *collectionView; // @synthesize collectionView=_collectionView;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (double)scrollView:(id)arg1 pageAlignedOriginOnAxis:(long long)arg2 forProposedDestination:(double)arg3 currentOrigin:(double)arg4 initialOrigin:(double)arg5 velocity:(double)arg6;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
