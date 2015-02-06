@@ -6,9 +6,14 @@ This is a sample project that uses new (and unfortunately private) framework tha
 The headers have been dumped using class-dump utility and then slightly modified to allow it's use in our own XCode projects. 
 
 
-# Worth mentioning
+# Notes
 Please note though, that there are some missing protocol declarations so some classes interfaces had to be commented out.
 One of such missing protocols were UXTableViewDataSource and UXTableViewDelegate, those two have been replaced by their UIKit counterparts and can be found in MissingTypes.h header file.
+
+# @TODO:
+* Clean the headers so they use the correct types (ie: animated:(BOOL)animated instead of animated(id):arg2)
+* Check the possible enum values for UXBarButton withStyle etc
+* Maybe get the Split View Controller working?
 
 # Honorable Mentions
 
