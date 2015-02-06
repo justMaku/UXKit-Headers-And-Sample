@@ -15,8 +15,22 @@
 		2EF7B67E1A8442BB00011200 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EF7B67D1A8442BB00011200 /* main.m */; };
 		2EF7B6801A8442BB00011200 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF7B67F1A8442BB00011200 /* Images.xcassets */; };
 		2EF7B6831A8442BB00011200 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EF7B6811A8442BB00011200 /* MainMenu.xib */; };
+		40B5CD6B1A850445000B4448 /* UXKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EA6BE521A84433B00C4C122 /* UXKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F2D59B91A84C4EE00B561A8 /* DMCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D59B81A84C4EE00B561A8 /* DMCollectionViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		40B5CD6A1A850442000B4448 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				40B5CD6B1A850445000B4448 /* UXKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2EA6BE521A84433B00C4C122 /* UXKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UXKit.framework; path = ../Frameworks/UXKit.framework; sourceTree = SOURCE_ROOT; };
@@ -427,6 +441,7 @@
 				2EF7B6711A8442BB00011200 /* Sources */,
 				2EF7B6721A8442BB00011200 /* Frameworks */,
 				2EF7B6731A8442BB00011200 /* Resources */,
+				40B5CD6A1A850442000B4448 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -589,6 +604,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -605,6 +621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
