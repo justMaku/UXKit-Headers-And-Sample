@@ -6,7 +6,7 @@
 
 @import  AppKit;
 
-#import "UITextInputTraits.h"
+//#import "NSTextInputTraits.h"
 
 @class NSString;
 

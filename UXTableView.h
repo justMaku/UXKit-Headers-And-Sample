@@ -5,7 +5,7 @@
 //
 
 #import "UXCollectionView.h"
-#import "UXTableView"
+#import "UXTableView.h"
 #import "UXCollectionViewDataSource-Protocol.h"
 
 @class NSColor, NSIndexPath, NSMenu;

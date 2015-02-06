@@ -7,6 +7,7 @@
 #import "UXViewController.h"
 
 #import "UXToolbarDelegate-Protocol.h"
+//#import "_UXAccessoryBarContainer-Protocol.h"
 
 @class NSArray, NSLayoutConstraint, NSMutableArray, NSString, UXEventTracker, UXNavigationBar, UXToolbar, UXTransitionController, _UXContainerView, _UXViewControllerOneToOneTransitionContext;
 
@@ -37,7 +38,7 @@
     long long __toolbarPosition;
     unsigned long long __defaultPushTransition;
     unsigned long long __defaultPopTransition;
-    id <_UXAccessoryBarContainer> _accessoryBarContainer;
+//    id <_UXAccessoryBarContainer> _accessoryBarContainer;
     NSMutableArray *_internalViewControllers;
     _UXContainerView *_containerView;
     NSMutableArray *_addedConstraints;
@@ -77,7 +78,7 @@
 @property(readonly, nonatomic) BOOL isTransitioning; // @synthesize isTransitioning=_isTransitioning;
 @property(nonatomic, setter=_setBackBarButtonItemBordered:) BOOL _backBarButtonItemBordered; // @synthesize _backBarButtonItemBordered=__backBarButtonItemBordered;
 @property(nonatomic, setter=_setHidesBackTitles:) BOOL _hidesBackTitles; // @synthesize _hidesBackTitles=__hidesBackTitles;
-@property(nonatomic) __weak id <_UXAccessoryBarContainer> accessoryBarContainer; // @synthesize accessoryBarContainer=_accessoryBarContainer;
+//@property(nonatomic) __weak id <_UXAccessoryBarContainer> accessoryBarContainer; // @synthesize accessoryBarContainer=_accessoryBarContainer;
 @property(nonatomic, setter=_setDefaultPopTransition:) unsigned long long _defaultPopTransition; // @synthesize _defaultPopTransition=__defaultPopTransition;
 @property(nonatomic, setter=_setDefaultPushTransition:) unsigned long long _defaultPushTransition; // @synthesize _defaultPushTransition=__defaultPushTransition;
 @property(nonatomic, setter=_setToolbarPosition:) long long _toolbarPosition; // @synthesize _toolbarPosition=__toolbarPosition;

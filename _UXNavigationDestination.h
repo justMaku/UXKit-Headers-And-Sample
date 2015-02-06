@@ -6,7 +6,7 @@
 
 
 
-#import "UXNavigationDestination.h"
+#import "UXNavigationDestination-Protocol.h"
 
 @class NSString, UXAuxiliaryNavigationStore;
 

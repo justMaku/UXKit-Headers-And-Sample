@@ -6,8 +6,6 @@
 
 @import  AppKit;
 
-#import "UITextInputTraits.h"
-
 @class NSString;
 
 @interface NSTextView (Compatibility) <UITextInputTraits>

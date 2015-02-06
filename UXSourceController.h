@@ -7,9 +7,9 @@
 #import "UXViewController.h"
 
 #import "UXNavigationControllerDelegate-Protocol.h"
-#import "_UXSourceSplitViewDelegate.h"
+#import "_UXSourceSplitViewDelegate-Protocol.h"
 
-@class NSArray, NSMapTable, NSOperationQueue, NSSegmentedControl, NSString, NSView, UXTransitionController, UXViewController<UXSourceList>, _UXSourceSplitView, _UXViewControllerOneToOneTransitionContext;
+@class NSArray, NSMapTable, NSOperationQueue, NSSegmentedControl, NSString, NSView, UXTransitionController, _UXSourceSplitView, _UXViewControllerOneToOneTransitionContext;
 
 @interface UXSourceController : UXViewController <UXNavigationControllerDelegate, _UXSourceSplitViewDelegate>
 {

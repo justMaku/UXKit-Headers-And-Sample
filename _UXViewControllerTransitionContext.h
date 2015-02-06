@@ -6,7 +6,7 @@
 
 
 
-#import "UXViewControllerContextTransitioning.h"
+#import "UXViewControllerContextTransitioning-Protocol.h"
 
 @class NSArray, NSString, UXView, _UXViewControllerTransitionCoordinator;
 

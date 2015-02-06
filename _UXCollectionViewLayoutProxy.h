@@ -6,6 +6,8 @@
 
 @import  AppKit;
 
+#import "UXCollectionViewLayoutProxyDelegate-Protocol.h"
+
 @class NSMapTable, UXCollectionViewLayout;
 
 @interface _UXCollectionViewLayoutProxy : NSProxy

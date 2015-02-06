@@ -6,7 +6,7 @@
 
 #import "UXView.h"
 
-#import "_UXBarItemsContainer.h"
+#import "_UXBarItemsContainer-Protocol.h"
 
 @class NSLayoutConstraint, NSMutableArray, NSString, NSView, UXImageView, UXNavigationBar, UXNavigationItem;
 
