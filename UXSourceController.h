@@ -6,7 +6,7 @@
 
 #import "UXViewController.h"
 
-#import "UXNavigationControllerDelegate.h"
+#import "UXNavigationControllerDelegate-Protocol.h"
 #import "_UXSourceSplitViewDelegate.h"
 
 @class NSArray, NSMapTable, NSOperationQueue, NSSegmentedControl, NSString, NSView, UXTransitionController, UXViewController<UXSourceList>, _UXSourceSplitView, _UXViewControllerOneToOneTransitionContext;

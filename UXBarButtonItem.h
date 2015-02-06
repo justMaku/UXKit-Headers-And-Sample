@@ -6,7 +6,7 @@
 
 #import "UXBarItem.h"
 
-#import "UXKitAppearance.h"
+#import "UXKitAppearance-Protocol.h"
 
 @class NSColor, NSString, NSView, UXViewController;
 

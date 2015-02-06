@@ -6,6 +6,8 @@
 
 #import "UXBar.h"
 
+#import "UXNavigationControllerDelegate-Protocol.h"
+
 @class NSArray, NSImage, NSMutableArray, NSView, UXNavigationItem, _UXNavigationItemContainerView;
 
 @interface UXNavigationBar : UXBar

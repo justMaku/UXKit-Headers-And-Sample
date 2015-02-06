@@ -6,7 +6,7 @@
 
 #import "UXView.h"
 
-#import "UXLayoutSupport.h"
+#import "UXLayoutSupport-Protocol.h"
 
 @class NSLayoutConstraint, NSString;
 

@@ -4,11 +4,8 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "ectionView.h"
-
-#im"
-
-#import "_UXCollectionViewOverdraw.h"
+#import "UXCollectionView.h"
+#import "_UXCollectionViewOverdraw-Protocol.h"
 
 @class NSString;
 

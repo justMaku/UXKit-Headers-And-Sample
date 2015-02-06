@@ -6,7 +6,7 @@
 
 #import "UXViewController.h"
 
-#import "UXToolbarDelegate.h"
+#import "UXToolbarDelegate-Protocol.h"
 
 @class NSArray, NSLayoutConstraint, NSMutableArray, NSString, UXEventTracker, UXNavigationBar, UXToolbar, UXTransitionController, _UXContainerView, _UXViewControllerOneToOneTransitionContext;
 

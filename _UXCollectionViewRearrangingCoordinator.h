@@ -9,7 +9,7 @@
 @import  AppKit;
 @import  AppKit;
 @import  AppKit;
-#import "UXCollectionViewLayoutProxyDelegate.h"
+#import "UXCollectionViewLayoutProxyDelegate-Protocol.h"
 
 @class NSArray, NSGestureRecognizer, NSString, UXCollectionView, UXCollectionViewLayout, _UXCollectionViewLayoutProxy;
 
