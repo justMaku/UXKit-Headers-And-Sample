@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2EA6BE521A84433B00C4C122 /* UXKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UXKit.framework; path = ../Frameworks/UXKit.framework; sourceTree = "<group>"; };
+		2EA6BE521A84433B00C4C122 /* UXKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UXKit.framework; path = ../Frameworks/UXKit.framework; sourceTree = SOURCE_ROOT; };
 		2EA6BE571A84438400C4C122 /* _UXBarItemsContainer-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "_UXBarItemsContainer-Protocol.h"; sourceTree = "<group>"; };
 		2EA6BE581A84438400C4C122 /* _UXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _UXButton.h; sourceTree = "<group>"; };
 		2EA6BE591A84438400C4C122 /* _UXButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _UXButtonCell.h; sourceTree = "<group>"; };
@@ -580,7 +580,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/maku/UXKit/Frameworks,
+					../Frameworks,
 				);
 				GCC_PREFIX_HEADER = "UXKitSample/Sample-Shared.pch";
 				INFOPLIST_FILE = UXKitSample/Info.plist;
@@ -596,7 +596,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/maku/UXKit/Frameworks,
+					../Frameworks,
 				);
 				GCC_PREFIX_HEADER = "UXKitSample/Sample-Shared.pch";
 				INFOPLIST_FILE = UXKitSample/Info.plist;
