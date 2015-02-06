@@ -7,8 +7,11 @@
 //
 
 #import "JMKMainViewController.h"
+#import "JMKTableViewController.h"
 
-@interface JMKMainViewController ()
+@interface JMKMainViewController () <UXTableViewDelegate, UXTableViewDataSource>
+
+@property (strong, nonatomic) UXTableView *tableView;
 
 @end
 
@@ -16,7 +19,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Hello From UXKit ;)";
+    self.title = @"Main";
+}
+
+- (void)viewDidAppear
+{
+    UXBarButtonItem *barItem = [[UXBarButtonItem alloc] initWithTitle:@"Next" style:1 target:self action:@selector(next)];
+        
+    self.navigationItem.rightBarButtonItems = @[barItem];
+}
+
+- (void)next
+{
+    UXViewController *vc = [[JMKTableViewController alloc] init];
+    vc.title = @"Table View Controller";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 }
 
 @end

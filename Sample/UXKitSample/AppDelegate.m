@@ -24,7 +24,9 @@
     self.rootViewController = [[JMKNavigationViewController alloc] init];
     self.windowController = [[UXWindowController alloc] initWithRootViewController:self.rootViewController];
     
+    [self.windowController.window setContentSize:NSMakeSize(505, 700)];
     [self.windowController showWindow:self];
+    
     
     JMKMainViewController *mainVC = [JMKMainViewController new];
     

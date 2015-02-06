@@ -10,6 +10,7 @@
 		2EA6BE531A84433B00C4C122 /* UXKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA6BE521A84433B00C4C122 /* UXKit.framework */; };
 		2EA6BEF01A8443F900C4C122 /* JMKNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6BEEF1A8443F900C4C122 /* JMKNavigationViewController.m */; };
 		2EA6BEF51A8445E300C4C122 /* JMKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6BEF31A8445E300C4C122 /* JMKMainViewController.m */; };
+		2EC5DB751A84B648009DB29D /* JMKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC5DB741A84B648009DB29D /* JMKTableViewController.m */; };
 		2EF7B67C1A8442BB00011200 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EF7B67B1A8442BB00011200 /* AppDelegate.m */; };
 		2EF7B67E1A8442BB00011200 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EF7B67D1A8442BB00011200 /* main.m */; };
 		2EF7B6801A8442BB00011200 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF7B67F1A8442BB00011200 /* Images.xcassets */; };
@@ -174,6 +175,8 @@
 		2EA6BEF11A84454900C4C122 /* Sample-Shared.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sample-Shared.pch"; sourceTree = "<group>"; };
 		2EA6BEF21A8445E300C4C122 /* JMKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMKMainViewController.h; sourceTree = "<group>"; };
 		2EA6BEF31A8445E300C4C122 /* JMKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMKMainViewController.m; sourceTree = "<group>"; };
+		2EC5DB731A84B648009DB29D /* JMKTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMKTableViewController.h; sourceTree = "<group>"; };
+		2EC5DB741A84B648009DB29D /* JMKTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMKTableViewController.m; sourceTree = "<group>"; };
 		2EF7B6751A8442BB00011200 /* UXKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UXKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF7B6791A8442BB00011200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EF7B67A1A8442BB00011200 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -392,6 +395,8 @@
 				2EA6BEEF1A8443F900C4C122 /* JMKNavigationViewController.m */,
 				2EA6BEF21A8445E300C4C122 /* JMKMainViewController.h */,
 				2EA6BEF31A8445E300C4C122 /* JMKMainViewController.m */,
+				2EC5DB731A84B648009DB29D /* JMKTableViewController.h */,
+				2EC5DB741A84B648009DB29D /* JMKTableViewController.m */,
 			);
 			name = Sample;
 			path = UXKitSample;
@@ -478,6 +483,7 @@
 			files = (
 				2EA6BEF51A8445E300C4C122 /* JMKMainViewController.m in Sources */,
 				2EF7B67E1A8442BB00011200 /* main.m in Sources */,
+				2EC5DB751A84B648009DB29D /* JMKTableViewController.m in Sources */,
 				2EA6BEF01A8443F900C4C122 /* JMKNavigationViewController.m in Sources */,
 				2EF7B67C1A8442BB00011200 /* AppDelegate.m in Sources */,
 			);
