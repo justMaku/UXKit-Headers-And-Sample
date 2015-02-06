@@ -21,7 +21,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(nonatomic) BOOL enablesReturnKeyAutomatically;
-@property(readonly) unsigned long long hash;
+@property(readonly) NSUInteger hash;
 @property(nonatomic) long long keyboardAppearance;
 @property(nonatomic) long long keyboardType;
 @property(nonatomic) long long returnKeyType;
