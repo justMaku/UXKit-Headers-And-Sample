@@ -9,7 +9,7 @@
 #import "JMKMainViewController.h"
 #import "JMKTableViewController.h"
 
-@interface JMKMainViewController () <UXTableViewDelegate, UXTableViewDataSource>
+@interface JMKMainViewController ()
 
 @property (strong, nonatomic) UXTableView *tableView;
 
@@ -34,8 +34,6 @@
     UXViewController *vc = [[JMKTableViewController alloc] init];
     vc.title = @"Table View Controller";
     [self.navigationController pushViewController:vc animated:YES];
-}
-
 }
 
 @end
