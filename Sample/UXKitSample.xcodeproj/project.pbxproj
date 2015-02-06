@@ -15,6 +15,7 @@
 		2EF7B67E1A8442BB00011200 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EF7B67D1A8442BB00011200 /* main.m */; };
 		2EF7B6801A8442BB00011200 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF7B67F1A8442BB00011200 /* Images.xcassets */; };
 		2EF7B6831A8442BB00011200 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EF7B6811A8442BB00011200 /* MainMenu.xib */; };
+		9F2D59B91A84C4EE00B561A8 /* DMCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D59B81A84C4EE00B561A8 /* DMCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -184,6 +185,8 @@
 		2EF7B67D1A8442BB00011200 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2EF7B67F1A8442BB00011200 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2EF7B6821A8442BB00011200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9F2D59B71A84C4EE00B561A8 /* DMCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCollectionViewController.h; sourceTree = "<group>"; };
+		9F2D59B81A84C4EE00B561A8 /* DMCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +400,8 @@
 				2EA6BEF31A8445E300C4C122 /* JMKMainViewController.m */,
 				2EC5DB731A84B648009DB29D /* JMKTableViewController.h */,
 				2EC5DB741A84B648009DB29D /* JMKTableViewController.m */,
+				9F2D59B71A84C4EE00B561A8 /* DMCollectionViewController.h */,
+				9F2D59B81A84C4EE00B561A8 /* DMCollectionViewController.m */,
 			);
 			name = Sample;
 			path = UXKitSample;
@@ -482,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EA6BEF51A8445E300C4C122 /* JMKMainViewController.m in Sources */,
+				9F2D59B91A84C4EE00B561A8 /* DMCollectionViewController.m in Sources */,
 				2EF7B67E1A8442BB00011200 /* main.m in Sources */,
 				2EC5DB751A84B648009DB29D /* JMKTableViewController.m in Sources */,
 				2EA6BEF01A8443F900C4C122 /* JMKNavigationViewController.m in Sources */,

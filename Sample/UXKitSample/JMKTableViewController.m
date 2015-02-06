@@ -7,6 +7,7 @@
 //
 
 #import "JMKTableViewController.h"
+#import "DMCollectionViewController.h"
 
 @interface JMKTableViewController () <UXTableViewDataSource, UXTableViewDelegate>
 
@@ -16,11 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (long long)numberOfSectionsInCollectionView:(id)arg1
-{
-    return 1;
 }
 
 -(long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2 {
@@ -39,6 +35,12 @@
     cell.backgroundColor = [NSColor lightGrayColor];
     
     return cell;
+}
+
+-(void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2
+{
+    DMCollectionViewController *collectionVC = [[DMCollectionViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:collectionVC animated:YES];
 }
 
 

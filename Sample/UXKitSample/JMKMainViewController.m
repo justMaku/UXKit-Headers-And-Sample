@@ -9,7 +9,7 @@
 #import "JMKMainViewController.h"
 #import "JMKTableViewController.h"
 
-@interface JMKMainViewController () <UXTableViewDelegate, UXTableViewDataSource>
+@interface JMKMainViewController ()
 
 @property (strong, nonatomic) UXTableView *tableView;
 
