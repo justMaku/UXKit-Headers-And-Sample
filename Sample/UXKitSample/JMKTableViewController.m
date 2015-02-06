@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableView registerClass:[UXTableViewCell class] forCellWithReuseIdentifier:@"cell"];
 }
 
 -(long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2 {
@@ -29,7 +31,11 @@
 }
 
 -(id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2 {
-    UXTableViewCell *cell = [[UXTableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    UXTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:arg2];
+    if (!cell) {
+        cell = [[UXTableViewCell alloc] initWithStyle:0 reuseIdentifier:@"cell"];
+    }
+    
     cell.textLabel.text = @"Those Cells are beautiful";
     
     cell.backgroundColor = [NSColor lightGrayColor];
