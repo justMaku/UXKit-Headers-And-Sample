@@ -19,7 +19,7 @@
 - (id)initWithContentRect:(struct CGRect)arg1;
 
 // Remaining properties
-@property id <_UXWindowDelegate> delegate; // @dynamic delegate;
+//@property id <_UXWindowDelegate> delegate; // @dynamic delegate;
 
 @end
 

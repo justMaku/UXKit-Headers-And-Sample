@@ -5,6 +5,7 @@
 //
 
 #import "UXView.h"
+#import "_UXSourceSplitViewDelegate-Protocol.h"
 
 @import  AppKit;
 

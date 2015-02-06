@@ -39,7 +39,7 @@
 @property(nonatomic) BOOL showsSectionFooterForSingleSection;
 @property(nonatomic) BOOL showsSectionHeaderForSingleSection;
 @property(nonatomic) BOOL floatingHeadersDisabled;
-@property(readonly, nonatomic) id <UXCollectionViewDelegateFlowLayout> delegateFlowLayout;
+//@property(readonly, nonatomic) id <UXCollectionViewDelegateFlowLayout> delegateFlowLayout;
 - (void)_setCollectionView:(id)arg1;
 - (id)init;
 

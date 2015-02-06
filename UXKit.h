@@ -99,7 +99,7 @@
 #import "_UXLayoutGuide.h"
 #import "NSObject-UXCollectionView.h"
 #import "UXCollectionViewData.h"
-#import "UXSourceController.h"
+//#import "UXSourceController.h"
 #import "_UXNavigationDestination.h"
 #import "NSPopoverDelegate-Protocol.h"
 #import "UXCollectionViewDataSource-Protocol.h"
@@ -157,7 +157,7 @@
 #import "UXViewControllerContextTransitioning-Protocol.h"
 #import "NSViewAnimationContext.h"
 #import "UXCollectionViewUpdateGap.h"
-#import "UXViewControllerInteractiveTransitioning-Protocol.h
+#import "UXViewControllerInteractiveTransitioning-Protocol.h"
 
 @interface Test : NSObject
 

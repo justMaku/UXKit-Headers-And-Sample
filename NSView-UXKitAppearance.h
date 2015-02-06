@@ -6,7 +6,7 @@
 
 @import  AppKit;
 
-#import "UXKitAppearance.h"
+#import "UXKitAppearance-Protocol.h"
 
 @class NSColor, NSString;
 
