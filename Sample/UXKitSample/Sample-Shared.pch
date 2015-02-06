@@ -1,0 +1,14 @@
+//
+//  Sample-Shared.h
+//  UXKitSample
+//
+//  Created by Michał Kałużny on 06.02.2015.
+//  Copyright (c) 2015 justmaku. All rights reserved.
+//
+
+#ifndef UXKitSample_Sample_Shared_h
+#define UXKitSample_Sample_Shared_h
+
+#import "UXKit.h"
+
+#endif

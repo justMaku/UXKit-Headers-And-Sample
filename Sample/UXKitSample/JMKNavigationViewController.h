@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 justmaku. All rights reserved.
 //
 
-#import "UXViewController.h"
+#import "UXNavigationController.h"
 
-@interface JMKSampleViewController : UXViewController
+@interface JMKNavigationViewController : UXNavigationController
 
 @end

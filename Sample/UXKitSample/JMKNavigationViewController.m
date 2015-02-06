@@ -6,17 +6,16 @@
 //  Copyright (c) 2015 justmaku. All rights reserved.
 //
 
-#import "JMKSampleViewController.h"
+#import "JMKNavigationViewController.h"
 
-@interface JMKSampleViewController ()
+@interface JMKNavigationViewController ()
 
 @end
 
-@implementation JMKSampleViewController
+@implementation JMKNavigationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
 }
 
 @end

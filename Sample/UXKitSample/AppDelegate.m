@@ -7,15 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "UXKit.h"
-#import "JMKSampleViewController.h"
+#import "JMKNavigationViewController.h"
+#import "JMKMainViewController.h"
 
 @interface AppDelegate ()
 
-@property (weak) IBOutlet NSWindow *window;
-
 @property (strong, nonatomic) UXWindowController *windowController;
-@property (strong, nonatomic) UXViewController *rootViewController;
+@property (strong, nonatomic) UXNavigationController *rootViewController;
 
 @end
 
@@ -23,10 +21,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    self.rootViewController = [[JMKSampleViewController alloc] init];
+    self.rootViewController = [[JMKNavigationViewController alloc] init];
     self.windowController = [[UXWindowController alloc] initWithRootViewController:self.rootViewController];
     
     [self.windowController showWindow:self];
+    
+    JMKMainViewController *mainVC = [JMKMainViewController new];
+    
+    [self.rootViewController pushViewController:mainVC animated:NO];
     
 }
 
