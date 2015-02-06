@@ -20,7 +20,7 @@
 
 @property(copy, nonatomic) CDUnknownBlockType lengthUpdateBlock; // @synthesize lengthUpdateBlock=_lengthUpdateBlock;
 @property(nonatomic) BOOL horizontal; // @synthesize horizontal=_horizontal;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)_setUpDimensionConstraintWithLength:(double)arg1;
 - (void)_setUpCounterDimensionConstraint;
 @property(nonatomic) double length;

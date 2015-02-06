@@ -24,7 +24,7 @@
 @property(nonatomic) struct CGRect fromStartFrame; // @synthesize fromStartFrame=_fromStartFrame;
 @property(retain, nonatomic) UXViewController *toViewController; // @synthesize toViewController=_toViewController;
 @property(retain, nonatomic) UXViewController *fromViewController; // @synthesize fromViewController=_fromViewController;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 @property(readonly, nonatomic) UXView *fromView;
 @property(readonly, nonatomic) UXView *toView;
 - (struct CGRect)finalFrameForViewController:(id)arg1;

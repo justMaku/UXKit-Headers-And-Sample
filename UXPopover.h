@@ -14,7 +14,7 @@
 }
 
 @property(retain, nonatomic) UXPopoverController *popoverController; // @synthesize popoverController=_popoverController;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 
 @end
 

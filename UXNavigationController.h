@@ -89,7 +89,7 @@
 @property(nonatomic, getter=isToolbarHidden) BOOL toolbarHidden; // @synthesize toolbarHidden=_toolbarHidden;
 @property(nonatomic, getter=isNavigationBarDetached) BOOL navigationBarDetached; // @synthesize navigationBarDetached=_navigationBarDetached;
 @property(nonatomic, getter=isNavigationBarHidden) BOOL navigationBarHidden; // @synthesize navigationBarHidden=_navigationBarHidden;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (long long)positionForBar:(id)arg1;
 - (void)_endObservingTopViewController;
 - (void)_beginObservingTopViewController;

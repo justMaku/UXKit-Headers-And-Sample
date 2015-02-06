@@ -22,7 +22,7 @@
 }
 
 @property(nonatomic) BOOL alwaysStretches; // @synthesize alwaysStretches=_alwaysStretches;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (struct CGRect)_contentRectInPixels;
 - (BOOL)_isTiledWhenStretchedToSize:(struct CGSize)arg1;
 - (struct CGRect)_contentStretchInPixels;

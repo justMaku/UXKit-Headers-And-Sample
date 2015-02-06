@@ -31,7 +31,7 @@
 @property(copy, nonatomic) NSString *prompt; // @synthesize prompt=_prompt;
 @property(retain, nonatomic) NSView *titleView; // @synthesize titleView=_titleView;
 @property(retain, nonatomic) UXBarButtonItem *backBarButtonItem; // @synthesize backBarButtonItem=_backBarButtonItem;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)_removeAllChildItems;
 - (void)removeChildItem:(id)arg1;
 - (void)addChildItem:(id)arg1;

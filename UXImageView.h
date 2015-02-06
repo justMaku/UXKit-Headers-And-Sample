@@ -18,7 +18,7 @@
 }
 
 @property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)sizeToFit;
 - (void)_updateBackingScaleFactorForWindow:(id)arg1;
 - (void)_updateLayerContentsForWindow:(id)arg1;

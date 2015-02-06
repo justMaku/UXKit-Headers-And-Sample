@@ -36,7 +36,7 @@
 @property(retain, nonatomic) NSEvent *trackingEvent; // @synthesize trackingEvent=_trackingEvent;
 @property(nonatomic) __weak UXView *view; // @synthesize view=_view;
 @property(nonatomic) long long state; // @synthesize state=_state;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (id)description;
 - (BOOL)eventTrackerRequiresTouches;
 - (void)reset;

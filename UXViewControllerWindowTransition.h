@@ -14,7 +14,7 @@
 }
 
 @property(retain) UXWindowController *windowController; // @synthesize windowController=_windowController;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)animateDismissalOfViewController:(id)arg1 fromViewController:(id)arg2;
 - (void)animatePresentationOfViewController:(id)arg1 fromViewController:(id)arg2;
 - (void)_windowWillClose:(id)arg1;

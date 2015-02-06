@@ -32,7 +32,7 @@
 @property(nonatomic) BOOL accessibilityChildrenHidden; // @synthesize accessibilityChildrenHidden=_accessibilityChildrenHidden;
 @property(nonatomic) BOOL userInteractionEnabled; // @synthesize userInteractionEnabled=_userInteractionEnabled;
 @property(nonatomic, getter=isExclusiveTouch) BOOL exclusiveTouch; // @synthesize exclusiveTouch=_exclusiveTouch;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (id)accessibilityChildren;
 - (id)menuForEvent:(id)arg1;
 - (id)snapshotViewFromRect:(struct CGRect)arg1;

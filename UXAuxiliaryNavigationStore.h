@@ -20,7 +20,7 @@
 
 + (BOOL)supportsSecureCoding;
 @property(nonatomic) __weak UXSourceController *sourceController; // @synthesize sourceController=_sourceController;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (id)_dictionaryForNamespace:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

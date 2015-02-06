@@ -22,7 +22,7 @@
 @property(copy, nonatomic) NSString *accessibilityLabel; // @synthesize accessibilityLabel=_accessibilityLabel;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (id)init;
 
 @end

@@ -15,7 +15,7 @@
 }
 
 + (Class)cellClass;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (BOOL)accessibilityPerformPress;
 - (id)accessibilityLabel;
 - (id)_textColorForState:(unsigned long long)arg1;

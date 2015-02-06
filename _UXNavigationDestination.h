@@ -23,7 +23,7 @@
 @property(retain, nonatomic) UXAuxiliaryNavigationStore *auxiliaryNavigationStore; // @synthesize auxiliaryNavigationStore=_auxiliaryNavigationStore;
 @property(retain, nonatomic) NSString *destinationTitle; // @synthesize destinationTitle=_destinationTitle;
 @property(retain, nonatomic) NSString *destinationType; // @synthesize destinationType=_destinationType;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 

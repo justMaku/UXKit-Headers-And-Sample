@@ -24,7 +24,7 @@
 @property(retain, nonatomic, setter=_setAlongsideAnimationViews:) NSMutableArray *_alongsideAnimationViews; // @synthesize _alongsideAnimationViews=__alongsideAnimationViews;
 @property(retain, nonatomic, setter=_setAlongsideAnimations:) NSMutableArray *_alongsideAnimations; // @synthesize _alongsideAnimations=__alongsideAnimations;
 @property(nonatomic, setter=_setMainContext:) _UXViewControllerTransitionContext *_mainContext; // @synthesize _mainContext=__mainContext;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)notifyWhenInteractionEndsUsingBlock:(CDUnknownBlockType)arg1;
 - (BOOL)animateAlongsideTransition:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (BOOL)animateAlongsideTransitionInView:(id)arg1 animation:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;

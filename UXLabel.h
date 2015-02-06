@@ -27,7 +27,7 @@
 @property(nonatomic) struct CGSize shadowOffset; // @synthesize shadowOffset=_shadowOffset;
 @property(retain, nonatomic) NSColor *shadowColor; // @synthesize shadowColor=_shadowColor;
 @property(retain, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (id)accessibilityRoleDescription;
 - (void)setAccessibilityRoleDescription:(id)arg1;
 - (id)accessibilityRole;

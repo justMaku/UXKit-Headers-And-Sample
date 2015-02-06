@@ -58,7 +58,7 @@
 @property(nonatomic, getter=isAnimated) BOOL animated; // @synthesize animated=_animated;
 @property(nonatomic, getter=isCurrentlyInteractive) BOOL currentlyInteractive; // @synthesize currentlyInteractive=_currentlyInteractive;
 @property(nonatomic) BOOL initiallyInteractive; // @synthesize initiallyInteractive=_initiallyInteractive;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)_enableInteractionForDisabledViews;
 - (void)_disableInteractionForViews:(id)arg1;
 - (void)__runAlongsideAnimations;

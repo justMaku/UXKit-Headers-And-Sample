@@ -48,7 +48,7 @@
 @property(nonatomic) struct NSEdgeInsets edgeInsets; // @synthesize edgeInsets=_edgeInsets;
 @property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent=_translucent;
 @property(nonatomic) __weak id <UXNavigationBarDelegate> delegate; // @synthesize delegate=_delegate;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)setNeedsRecalcuateWindowKeyViewLoop;
 - (void)recalculateKeyViewLoop;
 - (void)_completeInteractiveTransition:(BOOL)arg1;

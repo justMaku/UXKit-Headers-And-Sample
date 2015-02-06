@@ -22,7 +22,7 @@
 + (id)toolbarItemsContainerForToolbar:(id)arg1 items:(id)arg2;
 @property(nonatomic) double interitemSpacing; // @synthesize interitemSpacing=_interitemSpacing;
 @property(readonly, nonatomic) NSArray *items; // @synthesize items=_items;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)updateConstraints;
 - (void)prepareForTransistion;
 - (id)init;

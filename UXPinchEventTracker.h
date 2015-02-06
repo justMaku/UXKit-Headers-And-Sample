@@ -28,7 +28,7 @@
 }
 
 @property(nonatomic) double scale; // @synthesize scale=_scale;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (struct CGPoint)locationOfTouch:(unsigned long long)arg1 inView:(id)arg2;
 - (struct CGPoint)locationOfTouch:(id)arg1;
 - (id)_touchForTouchIdentity:(id)arg1;

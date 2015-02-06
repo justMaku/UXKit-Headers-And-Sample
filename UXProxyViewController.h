@@ -13,7 +13,7 @@
     UXView *_proxyView;
 }
 
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)didMoveToParentViewController:(id)arg1;
 - (BOOL)isViewLoaded;
 - (id)view;

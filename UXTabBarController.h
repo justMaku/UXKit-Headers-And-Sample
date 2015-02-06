@@ -18,7 +18,7 @@
 @property(readonly, nonatomic) NSSegmentedControl *segmentedControl; // @synthesize segmentedControl=_segmentedControl;
 @property(nonatomic) __weak UXViewController *selectedViewController; // @synthesize selectedViewController=_selectedViewController;
 @property(copy, nonatomic) NSArray *viewControllers; // @synthesize viewControllers=_viewControllers;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 @property(nonatomic) unsigned long long selectedIndex;
 - (void)viewDidLoad;
 - (void)keyDown:(id)arg1;

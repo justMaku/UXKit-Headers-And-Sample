@@ -39,7 +39,7 @@
 @property(retain, nonatomic) NSView *customView; // @synthesize customView=_customView;
 @property(nonatomic) double width; // @synthesize width=_width;
 @property(nonatomic) long long style; // @synthesize style=_style;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 @property(readonly, nonatomic) NSView *_view;
 - (void)_performAction:(id)arg1;
 - (id)_viewOfClass:(Class)arg1;

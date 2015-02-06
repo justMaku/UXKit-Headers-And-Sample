@@ -19,7 +19,7 @@
 
 @property(nonatomic) double allowableMovement; // @synthesize allowableMovement=_allowableMovement;
 @property(nonatomic) double minimumPressDuration; // @synthesize minimumPressDuration=_minimumPressDuration;
-- (void).cxx_destruct;
+- (void)cxx_destruct;
 - (void)_minimumDurationElapsed:(id)arg1;
 - (void)_stopTimer;
 - (void)_startTimer;
