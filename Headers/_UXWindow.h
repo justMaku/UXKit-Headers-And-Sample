@@ -4,12 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import  AppKit;
+#import "NSWindow.h"
 
 @interface _UXWindow : NSWindow
 {
 }
 
+- (void)cancelOperation:(id)arg1;
 - (BOOL)makeFirstResponder:(id)arg1;
 - (void)recalculateKeyViewLoop;
 - (void)tintColorDidChange;
@@ -19,7 +20,7 @@
 - (id)initWithContentRect:(struct CGRect)arg1;
 
 // Remaining properties
-//@property id <_UXWindowDelegate> delegate; // @dynamic delegate;
+@property id <_UXWindowDelegate> delegate; // @dynamic delegate;
 
 @end
 

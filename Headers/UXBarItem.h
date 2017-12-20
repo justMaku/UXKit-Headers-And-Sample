@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-
+#import "NSObject.h"
 
 @class NSImage, NSString;
 
@@ -22,7 +22,7 @@
 @property(copy, nonatomic) NSString *accessibilityLabel; // @synthesize accessibilityLabel=_accessibilityLabel;
 @property(retain, nonatomic) NSString *title; // @synthesize title=_title;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)init;
 
 @end

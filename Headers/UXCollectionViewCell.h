@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXCollectionReusableView.h"
+#import <UXKit/UXCollectionReusableView.h>
 
 @class NSView;
 
@@ -12,8 +12,10 @@
 {
     NSView *_contentView;
     BOOL _selected;
+    BOOL _selectionBorderShouldUsePrimaryColor;
 }
 
+@property(nonatomic) BOOL selectionBorderShouldUsePrimaryColor; // @synthesize selectionBorderShouldUsePrimaryColor=_selectionBorderShouldUsePrimaryColor;
 @property(readonly, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
 @property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
 - (void)_setSelected:(BOOL)arg1 animated:(BOOL)arg2;
@@ -30,6 +32,7 @@
 - (BOOL)isAccessibilitySelectorAllowed:(SEL)arg1;
 - (BOOL)isAccessibilitySelected;
 - (id)_axSimulateClick:(unsigned long long)arg1 withNumberOfClicks:(unsigned long long)arg2;
+- (void)_axPerformDoubleClick;
 - (BOOL)accessibilityPerformPress;
 
 @end

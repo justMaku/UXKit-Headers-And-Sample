@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXTransitionController.h"
+#import <UXKit/UXTransitionController.h>
 
 @class UXView;
 
@@ -14,7 +14,7 @@
 }
 
 + (void)_addShadowToView:(id)arg1 withAlpha:(double)arg2;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (BOOL)navigationController:(id)arg1 shouldBeginInteractivePopFromViewController:(id)arg2 toViewController:(id)arg3;
 - (id)navigationController:(id)arg1 animationControllerForOperation:(long long)arg2 fromViewController:(id)arg3 toViewController:(id)arg4;
 - (id)navigationController:(id)arg1 interactionControllerForAnimationController:(id)arg2;

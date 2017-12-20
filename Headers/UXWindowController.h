@@ -4,13 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import AppKit;
+#import "NSWindowController.h"
 
-#import "UXAccessoryBarContainerProtocol.h"
+#import "NSToolbarDelegate.h"
+#import "NSWindowDelegate.h"
+#import "_UXAccessoryBarContainer.h"
 
 @class NSString, NSTitlebarAccessoryViewController, NSToolbarItem, UXToolbar, UXViewController;
 
-@interface UXWindowController : NSWindowController <NSToolbarDelegate, UXAccessoryBarContainer, NSWindowDelegate>
+@interface UXWindowController : NSWindowController <NSToolbarDelegate, _UXAccessoryBarContainer, NSWindowDelegate>
 {
     NSTitlebarAccessoryViewController *_titlebarAccessoryViewController;
     UXToolbar *_currentAccessoryToolbar;
@@ -19,13 +21,14 @@
 
 + (id)defaultWindow;
 @property __weak NSToolbarItem *navigationBarToolbarItem; // @synthesize navigationBarToolbarItem=_navigationBarToolbarItem;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (void)windowDidBecomeFirstResponder:(id)arg1;
 - (void)windowDidRecalculateKeyViewLoop:(id)arg1;
 - (void)windowWillRecalculateKeyViewLoop:(id)arg1;
 - (void)windowWillExitFullScreen:(id)arg1;
 - (void)windowWillEnterFullScreen:(id)arg1;
 - (struct CGRect)window:(id)arg1 willPositionSheet:(id)arg2 usingRect:(struct CGRect)arg3;
+- (void)_updateFirstResponder;
 - (void)_updateAccessoryBar;
 - (void)_updateToolbarItem;
 - (void)_popoverWillShow:(id)arg1;
@@ -50,7 +53,7 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

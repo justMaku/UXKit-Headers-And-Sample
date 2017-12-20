@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXCollectionViewIndexPathsSet.h"
+#import <UXKit/UXCollectionViewIndexPathsSet.h>
 
 @interface UXCollectionViewMutableIndexPathsSet : UXCollectionViewIndexPathsSet
 {
@@ -25,6 +25,9 @@
 - (void)removeIndexPathsSet:(id)arg1;
 - (void)removeIndexPaths:(id)arg1;
 - (void)removeIndexPath:(id)arg1;
+- (void)removeSections:(id)arg1;
+- (void)removeSection:(long long)arg1;
+- (void)removeSection:(long long)arg1 itemsInRange:(struct _NSRange)arg2;
 - (void)addSection:(long long)arg1 itemsInRange:(struct _NSRange)arg2;
 - (void)addIndexPathsSet:(id)arg1;
 - (void)addIndexPaths:(id)arg1;

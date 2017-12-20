@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import  AppKit;
+#import "NSAccessibilityElement.h"
 
 @class NSArray, UXCollectionView, UXCollectionViewLayoutAccessibility;
 
@@ -14,7 +14,7 @@
 }
 
 - (void)setAccessibilityVisibleChildren:(id)arg1;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)description;
 - (BOOL)accessibilityPerformScrollToVisible;
 - (void)accessibilityPerformAction:(id)arg1;
@@ -37,8 +37,8 @@
 - (id)siblingAboveItem:(id)arg1;
 - (id)siblingAfterItem:(id)arg1;
 - (id)siblingBeforeItem:(id)arg1;
-- (id)visibleCellsInSection:(unsigned long long)arg1;
-- (id)visibleSupplementaryViewsInSection:(unsigned long long)arg1;
+- (id)visibleCellsInSection:(long long)arg1;
+- (id)visibleSupplementaryViewsInSection:(long long)arg1;
 - (void)_dumpVisibleChildren;
 - (void)accessibilityPrepareLayout;
 - (void)accessibilityInvalidateLayout;

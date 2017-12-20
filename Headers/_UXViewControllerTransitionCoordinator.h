@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "NSObject.h"
 
-
-#import "UXViewControllerTransitionCoordinator-Protocol.h"
+#import "UXViewControllerTransitionCoordinator.h"
 
 @class NSMutableArray, NSString, _UXViewControllerTransitionContext;
 
@@ -24,7 +24,7 @@
 @property(retain, nonatomic, setter=_setAlongsideAnimationViews:) NSMutableArray *_alongsideAnimationViews; // @synthesize _alongsideAnimationViews=__alongsideAnimationViews;
 @property(retain, nonatomic, setter=_setAlongsideAnimations:) NSMutableArray *_alongsideAnimations; // @synthesize _alongsideAnimations=__alongsideAnimations;
 @property(nonatomic, setter=_setMainContext:) _UXViewControllerTransitionContext *_mainContext; // @synthesize _mainContext=__mainContext;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (void)notifyWhenInteractionEndsUsingBlock:(CDUnknownBlockType)arg1;
 - (BOOL)animateAlongsideTransition:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (BOOL)animateAlongsideTransitionInView:(id)arg1 animation:(CDUnknownBlockType)arg2 completion:(CDUnknownBlockType)arg3;
@@ -49,7 +49,7 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

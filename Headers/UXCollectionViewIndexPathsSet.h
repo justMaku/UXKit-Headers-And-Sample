@@ -4,7 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "NSObject.h"
 
+#import "NSCopying.h"
+#import "NSMutableCopying.h"
 
 @class NSMutableDictionary, NSMutableIndexSet;
 
@@ -23,6 +26,7 @@
 - (id)lastIndexPath;
 - (id)firstIndexPath;
 - (id)allIndexPaths;
+- (id)itemsInSection:(long long)arg1;
 - (id)indexPathsForSections:(id)arg1;
 - (id)indexPathsForSection:(long long)arg1;
 - (id)sections;

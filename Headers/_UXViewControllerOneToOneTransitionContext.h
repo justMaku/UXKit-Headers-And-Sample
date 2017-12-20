@@ -4,12 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "_UXViewControllerTransitionContext.h"
+#import <UXKit/_UXViewControllerTransitionContext.h>
 
 @class UXView, UXViewController;
 
 @interface _UXViewControllerOneToOneTransitionContext : _UXViewControllerTransitionContext
 {
+    CDUnknownBlockType arbitraryTransitionCompletionHandler;
     UXViewController *_fromViewController;
     UXViewController *_toViewController;
     struct CGRect _fromStartFrame;
@@ -24,7 +25,9 @@
 @property(nonatomic) struct CGRect fromStartFrame; // @synthesize fromStartFrame=_fromStartFrame;
 @property(retain, nonatomic) UXViewController *toViewController; // @synthesize toViewController=_toViewController;
 @property(retain, nonatomic) UXViewController *fromViewController; // @synthesize fromViewController=_fromViewController;
-- (void)cxx_destruct;
+- (void)setArbitraryTransitionCompletionHandler:(CDUnknownBlockType)arg1;
+- (CDUnknownBlockType)arbitraryTransitionCompletionHandler;
+- (void).cxx_destruct;
 @property(readonly, nonatomic) UXView *fromView;
 @property(readonly, nonatomic) UXView *toView;
 - (struct CGRect)finalFrameForViewController:(id)arg1;

@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXView.h"
+#import <UXKit/UXView.h>
 
-@import  AppKit;
+#import "NSAccessibilityStaticText.h"
 
 @class NSAttributedString, NSColor, NSFont, NSString, NSTextField;
 
@@ -16,24 +16,25 @@
     BOOL _highlighted;
     NSColor *_textColor;
     NSColor *_shadowColor;
-    long long _numberOfLines;
     NSColor *_highlightedTextColor;
+    long long _numberOfLines;
     struct CGSize _shadowOffset;
 }
 
+@property(nonatomic) long long numberOfLines; // @synthesize numberOfLines=_numberOfLines;
 @property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted=_highlighted;
 @property(retain, nonatomic) NSColor *highlightedTextColor; // @synthesize highlightedTextColor=_highlightedTextColor;
-@property(nonatomic) long long numberOfLines; // @synthesize numberOfLines=_numberOfLines;
 @property(nonatomic) struct CGSize shadowOffset; // @synthesize shadowOffset=_shadowOffset;
 @property(retain, nonatomic) NSColor *shadowColor; // @synthesize shadowColor=_shadowColor;
 @property(retain, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)accessibilityRoleDescription;
 - (void)setAccessibilityRoleDescription:(id)arg1;
 - (id)accessibilityRole;
 - (id)accessibilityLabel;
 - (void)setAccessibilityLabel:(id)arg1;
 - (id)accessibilityValue;
+- (struct CGRect)textRectForBounds:(struct CGRect)arg1 limitedToNumberOfLines:(long long)arg2;
 - (id)textFieldCell;
 @property(nonatomic) BOOL selectable;
 @property(nonatomic) BOOL centerVertically;
@@ -46,13 +47,18 @@
 - (struct CGSize)intrinsicContentSize;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (void)sizeToFit;
+- (void)setContentCompressionResistancePriority:(float)arg1 forOrientation:(long long)arg2;
+- (double)lastBaselineOffsetFromBottom;
+- (double)firstBaselineOffsetFromTop;
+- (struct NSEdgeInsets)alignmentRectInsets;
+- (id)backgroundColor;
 - (void)setBackgroundColor:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

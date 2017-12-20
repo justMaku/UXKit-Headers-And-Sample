@@ -4,21 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import  AppKit;
+#import "NSSegmentedControl.h"
 
-@class NSLayoutConstraint;
+@class NSImage, NSString;
 
-@interface UXBackButton : NSButton
+@interface UXBackButton : NSSegmentedControl
 {
     BOOL _hidesTitle;
-    NSLayoutConstraint *_widthConstraint;
+    NSString *_title;
+    NSImage *_image;
 }
 
-+ (Class)cellClass;
-@property(readonly, nonatomic) NSLayoutConstraint *widthConstraint; // @synthesize widthConstraint=_widthConstraint;
+@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(nonatomic) BOOL hidesTitle; // @synthesize hidesTitle=_hidesTitle;
-- (void)cxx_destruct;
-- (void)setTitle:(id)arg1;
+- (void).cxx_destruct;
+- (id)description;
 - (id)init;
 
 @end

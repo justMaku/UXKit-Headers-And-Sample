@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXViewController.h"
+#import <UXKit/UXViewController.h>
 
 @class UXView;
 
@@ -13,7 +13,7 @@
     UXView *_proxyView;
 }
 
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (void)didMoveToParentViewController:(id)arg1;
 - (BOOL)isViewLoaded;
 - (id)view;

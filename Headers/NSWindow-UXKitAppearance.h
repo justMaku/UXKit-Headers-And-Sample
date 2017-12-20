@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import  AppKit;
+#import "NSWindow.h"
 
-#import "UXKitAppearance-Protocol.h"
+#import "UXKitAppearance.h"
 
 @class NSColor, NSString;
 
@@ -18,7 +18,7 @@
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 @end
 

@@ -9,7 +9,7 @@
 @protocol NSObject
 @property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 - (struct _NSZone *)zone;
 - (unsigned long long)retainCount;
 - (id)autorelease;

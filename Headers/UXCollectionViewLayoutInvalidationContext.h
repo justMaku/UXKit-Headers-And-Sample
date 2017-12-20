@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-
+#import "NSObject.h"
 
 @class NSArray, NSMutableDictionary;
 
@@ -15,11 +15,14 @@
     struct {
         unsigned int invalidateDataSource:1;
         unsigned int invalidateEverything:1;
+        unsigned int invalidateContentSize:1;
     } _invalidationContextFlags;
 }
 
 - (id)_updateItems;
 - (void)_setUpdateItems:(id)arg1;
+- (void)setInvalidateContentSize:(BOOL)arg1;
+- (BOOL)invalidateContentSize;
 - (void)_setInvalidateEverything:(BOOL)arg1;
 @property(readonly, nonatomic) BOOL invalidateEverything;
 - (void)_setInvalidateDataSourceCounts:(BOOL)arg1;

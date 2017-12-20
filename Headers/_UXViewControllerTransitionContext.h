@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "NSObject.h"
 
-
-#import "UXViewControllerContextTransitioning-Protocol.h"
+#import "UXViewControllerContextTransitioning.h"
 
 @class NSArray, NSString, UXView, _UXViewControllerTransitionCoordinator;
 
@@ -30,7 +30,6 @@
     double _duration;
     long long _state;
     CDUnknownBlockType _interactiveUpdateHandler;
-    CDUnknownBlockType _postInteractiveCompletionHandler;
     long long _presentationStyle;
     double _percentOffset;
     id <UXViewControllerAnimatedTransitioning> _animator;
@@ -48,7 +47,6 @@
 @property(nonatomic) double percentOffset; // @synthesize percentOffset=_percentOffset;
 @property(nonatomic, getter=isPresentation) BOOL presentation; // @synthesize presentation=_presentation;
 @property(nonatomic) long long presentationStyle; // @synthesize presentationStyle=_presentationStyle;
-@property(copy, nonatomic) CDUnknownBlockType postInteractiveCompletionHandler; // @synthesize postInteractiveCompletionHandler=_postInteractiveCompletionHandler;
 @property(copy, nonatomic) CDUnknownBlockType interactiveUpdateHandler; // @synthesize interactiveUpdateHandler=_interactiveUpdateHandler;
 @property(nonatomic) long long state; // @synthesize state=_state;
 @property(nonatomic) double duration; // @synthesize duration=_duration;
@@ -58,7 +56,7 @@
 @property(nonatomic, getter=isAnimated) BOOL animated; // @synthesize animated=_animated;
 @property(nonatomic, getter=isCurrentlyInteractive) BOOL currentlyInteractive; // @synthesize currentlyInteractive=_currentlyInteractive;
 @property(nonatomic) BOOL initiallyInteractive; // @synthesize initiallyInteractive=_initiallyInteractive;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (void)_enableInteractionForDisabledViews;
 - (void)_disableInteractionForViews:(id)arg1;
 - (void)__runAlongsideAnimations;
@@ -83,9 +81,10 @@
 - (id)init;
 
 // Remaining properties
+@property(copy, nonatomic) CDUnknownBlockType arbitraryTransitionCompletionHandler;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

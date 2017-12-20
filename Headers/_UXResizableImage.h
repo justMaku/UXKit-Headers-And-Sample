@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import  AppKit;
+#import "NSImage.h"
 
 @interface _UXResizableImage : NSImage
 {
@@ -22,7 +22,7 @@
 }
 
 @property(nonatomic) BOOL alwaysStretches; // @synthesize alwaysStretches=_alwaysStretches;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (struct CGRect)_contentRectInPixels;
 - (BOOL)_isTiledWhenStretchedToSize:(struct CGSize)arg1;
 - (struct CGRect)_contentStretchInPixels;

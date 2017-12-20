@@ -4,12 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import AppKit;
+#import "NSViewController.h"
 
-#import "UXLayoutSupport-Protocol.h"
-#import "CDStructures.h"
-
-@class NSArray, NSResponder, NSString, UXNavigationController, UXNavigationItem, UXSourceController, UXTabBarItem, UXView;
+@class NSArray, NSResponder, NSString, NSView, UXNavigationController, UXNavigationItem, UXSourceController, UXTabBarController, UXTabBarItem, UXView;
 
 @interface UXViewController : NSViewController
 {
@@ -19,6 +16,7 @@
     NSArray *_accessoryBarItems;
     UXViewController *_toolbarViewController;
     NSArray *_toolbarItems;
+    NSArray *_subtoolbarItems;
     BOOL _hidesBottomBarWhenPushed;
     struct CGSize _ux_preferredContentSize;
     BOOL _viewDidLoad;
@@ -30,15 +28,31 @@
     long long _modalPresentationStyle;
     unsigned long long _edgesForExtendedLayout;
     UXView *_presentedViewControllerContainerView;
+    double _preferredToolbarHeight;
+    double _preferredToolbarBaselineOffsetFromBottom;
+    long long _preferredSubtoolbarPosition;
+    double _preferredSubtoolbarHeight;
+    double _preferredSubtoolbarBaselineOffsetFromBottom;
+    long long _preferredToolbarStyle;
+    struct NSEdgeInsets _preferredToolbarDecorationInsets;
 }
 
++ (id)toolbarPropertyNames;
 + (Class)viewClass;
++ (double)defaultToolbarHeight;
+@property(nonatomic) struct NSEdgeInsets preferredToolbarDecorationInsets; // @synthesize preferredToolbarDecorationInsets=_preferredToolbarDecorationInsets;
+@property(nonatomic) long long preferredToolbarStyle; // @synthesize preferredToolbarStyle=_preferredToolbarStyle;
+@property(nonatomic) double preferredSubtoolbarBaselineOffsetFromBottom; // @synthesize preferredSubtoolbarBaselineOffsetFromBottom=_preferredSubtoolbarBaselineOffsetFromBottom;
+@property(nonatomic) double preferredSubtoolbarHeight; // @synthesize preferredSubtoolbarHeight=_preferredSubtoolbarHeight;
+@property(nonatomic) long long preferredSubtoolbarPosition; // @synthesize preferredSubtoolbarPosition=_preferredSubtoolbarPosition;
+@property(nonatomic) double preferredToolbarBaselineOffsetFromBottom; // @synthesize preferredToolbarBaselineOffsetFromBottom=_preferredToolbarBaselineOffsetFromBottom;
+@property(nonatomic) double preferredToolbarHeight; // @synthesize preferredToolbarHeight=_preferredToolbarHeight;
 @property(retain, nonatomic) UXView *presentedViewControllerContainerView; // @synthesize presentedViewControllerContainerView=_presentedViewControllerContainerView;
 @property(nonatomic) BOOL automaticallyAdjustsScrollViewInsets; // @synthesize automaticallyAdjustsScrollViewInsets=_automaticallyAdjustsScrollViewInsets;
 @property(nonatomic) unsigned long long edgesForExtendedLayout; // @synthesize edgesForExtendedLayout=_edgesForExtendedLayout;
 @property(nonatomic) long long modalPresentationStyle; // @synthesize modalPresentationStyle=_modalPresentationStyle;
 @property(nonatomic) BOOL isEditing; // @synthesize isEditing=_isEditing;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)menuForEvent:(id)arg1;
 - (id)bottomLayoutGuide;
 - (id)topLayoutGuide;
@@ -48,6 +62,8 @@
 - (struct NSEdgeInsets)intrinsicLayoutInsets;
 - (struct CGSize)preferredContentSizeCappedToSize:(struct CGSize)arg1;
 @property struct CGSize preferredContentSize;
+- (void)contentRepresentingViewControllerDidChange;
+@property(readonly, nonatomic) UXViewController *contentRepresentingViewController;
 - (BOOL)_requiresWindowForTransitionPreparation;
 - (id)_ancestorViewControllerOfClass:(Class)arg1;
 - (void)_animateView:(id)arg1 fromFrame:(struct CGRect)arg2 toFrame:(struct CGRect)arg3;
@@ -61,6 +77,8 @@
 - (void)removeFromParentViewController;
 - (void)removeChildViewControllerAtIndex:(long long)arg1;
 - (void)addChildViewController:(id)arg1;
+- (void)windowDidRecalculateKeyViewLoop;
+- (void)windowWillRecalculateKeyViewLoop;
 - (void)viewDidLiveResize;
 - (void)viewWillLiveResize;
 - (void)viewDidLayoutSubviews;
@@ -75,12 +93,13 @@
 - (struct CGRect)_defaultInitialFrame;
 - (BOOL)acceptsFirstResponder;
 - (void)awakeFromNib;
+- (void)updateFirstResponderIfNeeded;
 @property(readonly, nonatomic) NSResponder *preferredFirstResponder;
-@property(copy) NSString *title;
+- (void)setTitle:(id)arg1;
+@property(readonly, nonatomic) NSView *viewIfLoaded;
 - (void)setView:(id)arg1;
 @property(readonly, nonatomic) UXView *uxView;
 - (void)_loadViewIfNotLoaded;
-- (void)_setupResponderChainIfNecessary;
 - (void)_prepareForAnimationInContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
@@ -88,6 +107,8 @@
 @property(nonatomic) BOOL hidesBottomBarWhenPushed;
 - (long long)preferredToolbarPosition;
 - (id)toolbarViewController;
+- (id)subtoolbarItems;
+- (void)setSubtoolbarItems:(id)arg1;
 - (void)setToolbarViewController:(id)arg1;
 - (id)toolbarItems;
 - (void)setToolbarItems:(id)arg1 animated:(BOOL)arg2;
@@ -98,8 +119,11 @@
 - (void)setAccessoryViewController:(id)arg1;
 @property(readonly, nonatomic) UXNavigationItem *navigationItem;
 @property(readonly, nonatomic) UXNavigationController *navigationController;
-- (id)tabBarController;
-- (id)tabBarItem;
+@property(readonly, nonatomic) __weak UXTabBarController *tabBarController;
+@property(retain, nonatomic) UXTabBarItem *tabBarItem; // @dynamic tabBarItem;
+- (id)preferredTabBarItemSegmentForNavigationDestination:(id)arg1;
+- (void)performActionForSelectingCurrentTabBarItemSegment;
+- (void)prepareForTransitionToSelectedTabBarItemSegmentWithCompletion:(CDUnknownBlockType)arg1;
 - (id)popoverController;
 - (void)updateViewConstraints;
 - (void)prepareForTransitionWithContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
@@ -111,11 +135,14 @@
 @property(nonatomic) BOOL hidesSourceListWhenPushed;
 - (BOOL)isTransitory;
 - (void)setTransitory:(BOOL)arg1;
-- (void)viewControllersForNavigationDestination:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)requestViewControllersForNavigationDestination:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (BOOL)canProvideViewControllersForNavigationDestination:(id)arg1;
 - (void)willEncodeNavigationDestination:(id)arg1;
 - (id)navigationDestination;
-- (id)navigationIdentifier;
+@property(readonly, nonatomic) NSString *navigationIdentifier;
 @property(readonly, nonatomic) UXSourceController *sourceController;
+- (void)setShouldAnimateToolbarsChanges;
+- (void)performToolbarsChanges:(CDUnknownBlockType)arg1;
 
 @end
 

@@ -4,9 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXCollectionView.h"
-#import "UXTableView.h"
-#import "UXCollectionViewDataSource-Protocol.h"
+#import <UXKit/UXCollectionView.h>
 
 @class NSColor, NSIndexPath, NSMenu;
 
@@ -51,7 +49,7 @@
 @property(nonatomic) double rowHeight; // @synthesize rowHeight=_rowHeight;
 @property(nonatomic) __weak id <UXTableViewDelegate> tableViewDelegate; // @synthesize tableViewDelegate=_tableViewDelegate;
 @property(nonatomic) __weak id <UXTableViewDataSource> tableViewDataSource; // @synthesize tableViewDataSource=_tableViewDataSource;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 @property(nonatomic) double alpha;
 - (void)_checkForAccessoryViewsInScrollerAreas;
 - (void)collectionView:(id)arg1 layout:(id)arg2 supplementaryViewDidEndFloatingAtIndexPath:(id)arg3 kind:(id)arg4;
@@ -74,10 +72,13 @@
 - (id)menuForEvent:(id)arg1;
 - (void)_menuDidEndTracking:(id)arg1;
 - (void)_menuDidBeginTracking:(id)arg1;
+- (void)scrollToRowAtIndexPath:(id)arg1 atScrollPosition:(long long)arg2 animated:(BOOL)arg3;
 - (void)deselectRowAtIndexPath:(id)arg1 animated:(BOOL)arg2;
 - (void)selectRowAtIndexPath:(id)arg1 animated:(BOOL)arg2 scrollPosition:(long long)arg3;
 - (id)indexPathForSelectedRow;
 - (id)indexPathForClickedRow;
+- (id)footerViewForSection:(long long)arg1;
+- (id)headerViewForSection:(long long)arg1;
 - (void)moveRowAtIndexPath:(id)arg1 toIndexPath:(id)arg2;
 - (void)reloadRowsAtIndexPaths:(id)arg1 withRowAnimation:(long long)arg2;
 - (void)deleteRowsAtIndexPaths:(id)arg1 withRowAnimation:(long long)arg2;
@@ -90,9 +91,12 @@
 - (void)sizeToFit;
 - (struct CGSize)sizeThatFits:(struct CGSize)arg1;
 - (long long)numberOfRowsInSection:(long long)arg1;
+- (id)dequeueReusableHeaderFooterViewWithIdentifier:(id)arg1;
 - (id)dequeueReusableHeaderFooterViewWithReuseIdentifier:(id)arg1 forSection:(long long)arg2;
 - (id)dequeueReusableCellWithReuseIdentifier:(id)arg1 forIndexPath:(id)arg2;
+- (id)dequeueReusableCellWithIdentifier:(id)arg1;
 - (id)dequeueReusableCellWithIdentifier:(id)arg1 forIndexPath:(id)arg2;
+- (void)registerClass:(Class)arg1 forHeaderFooterViewReuseIdentifier:(id)arg2;
 - (void)registerClass:(Class)arg1 forCellReuseIdentifier:(id)arg2;
 - (id)cellForRowAtIndexPath:(id)arg1;
 - (void)setDelegate:(id)arg1;

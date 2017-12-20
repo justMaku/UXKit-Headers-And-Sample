@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXCollectionViewFlowLayout.h"
+#import <UXKit/UXCollectionViewFlowLayout.h>
 
 @class NSMutableArray, NSMutableDictionary;
 
@@ -27,7 +27,7 @@
 
 @property(readonly, nonatomic) NSMutableDictionary *headerAttributesByIndexPath; // @synthesize headerAttributesByIndexPath=_headerAttributesByIndexPath;
 @property(readonly, nonatomic) NSMutableArray *layoutAttributesArray; // @synthesize layoutAttributesArray=_layoutAttributesArray;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)layoutAttributesForSupplementaryViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
 - (void)invalidateLayoutWithContext:(id)arg1;
@@ -39,7 +39,7 @@
 @property(nonatomic) BOOL showsSectionFooterForSingleSection;
 @property(nonatomic) BOOL showsSectionHeaderForSingleSection;
 @property(nonatomic) BOOL floatingHeadersDisabled;
-//@property(readonly, nonatomic) id <UXCollectionViewDelegateFlowLayout> delegateFlowLayout;
+@property(readonly, nonatomic) id <UXCollectionViewDelegateFlowLayout> delegateFlowLayout;
 - (void)_setCollectionView:(id)arg1;
 - (id)init;
 

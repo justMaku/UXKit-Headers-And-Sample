@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-
+#import "NSObject.h"
 
 @class NSArray, NSCoder, NSEvent, NSMenu, NSNotification, NSPasteboard, NSScreen, NSUndoManager, NSWindow;
 
@@ -61,6 +61,6 @@
 - (struct CGRect)windowWillUseStandardFrame:(NSWindow *)arg1 defaultFrame:(struct CGRect)arg2;
 - (struct CGSize)windowWillResize:(NSWindow *)arg1 toSize:(struct CGSize)arg2;
 - (id)windowWillReturnFieldEditor:(NSWindow *)arg1 toObject:(id)arg2;
-- (BOOL)windowShouldClose:(id)arg1;
+- (BOOL)windowShouldClose:(NSWindow *)arg1;
 @end
 

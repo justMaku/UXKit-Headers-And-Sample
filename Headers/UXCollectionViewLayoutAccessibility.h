@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import  AppKit;
+#import "NSAccessibilityElement.h"
 
 @class NSArray, NSMutableArray, UXCollectionView, UXCollectionViewLayout;
 
@@ -20,7 +20,7 @@
 @property(retain, nonatomic) NSMutableArray *_sectionCache; // @synthesize _sectionCache=__sectionCache;
 @property(nonatomic) unsigned long long _sectionCacheOffset; // @synthesize _sectionCacheOffset=__sectionCacheOffset;
 @property(nonatomic) __weak UXCollectionViewLayout *layout; // @synthesize layout=_layout;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)_dequeueSectionWithIndex:(unsigned long long)arg1;
 - (void)_trimSectionCacheToVisibleSections:(id)arg1;
 - (id)_visibleSections;

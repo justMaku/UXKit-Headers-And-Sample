@@ -4,15 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXViewController.h"
+#import <UXKit/UXViewController.h>
 
-#import "UXToolbarDelegate-Protocol.h"
-//#import "_UXAccessoryBarContainer-Protocol.h"
+#import "NSMenuDelegate.h"
+#import "UXToolbarDelegate.h"
 
-@class NSArray, NSLayoutConstraint, NSMutableArray, NSString, UXEventTracker, UXNavigationBar, UXToolbar, UXTransitionController, _UXContainerView, _UXViewControllerOneToOneTransitionContext;
+@class NSArray, NSGestureRecognizer, NSLayoutConstraint, NSMutableArray, NSString, NSView, UXNavigationBar, UXToolbar, UXTransitionController, _UXContainerView, _UXViewControllerOneToOneTransitionContext, _UXWindowState;
 
-@interface UXNavigationController : UXViewController <UXToolbarDelegate>
+@interface UXNavigationController : UXViewController <UXToolbarDelegate, NSMenuDelegate>
 {
+    NSMutableArray *_navigationRequests;
+    NSMutableArray *_targetViewControllers;
+    NSMutableArray *_currentViewControllers;
     UXNavigationBar *_navigationBar;
     UXToolbar *_accessoryBar;
     UXToolbar *_toolbar;
@@ -23,23 +26,31 @@
         unsigned int animationControllerForOperation:1;
         unsigned int shouldBeginInteractivePopFromViewControllerToViewController:1;
     } _delegateFlags;
+    BOOL _isPerformingToolbarsChanges;
+    struct {
+        char toolbarItems;
+        char subtoolbarItems;
+        char positions;
+        char visibility;
+        char appearance;
+    } _toolbarsNeedUpdateFlags;
     BOOL _navigationBarHidden;
     BOOL _navigationBarDetached;
     BOOL _toolbarHidden;
+    BOOL _subtoolbarHidden;
+    BOOL _backButtonMenuEnabled;
+    BOOL _shouldAnimateToolbarUpdates;
     BOOL __fullScreenMode;
     BOOL __locked;
     BOOL __hidesBackTitles;
-    BOOL __backBarButtonItemBordered;
     BOOL _isTransitioning;
     BOOL _isInteractive;
+    UXToolbar *_subtoolbar;
     id <UXNavigationControllerDelegate> _delegate;
-    UXEventTracker *_interactivePopEventTracker;
-    double __leftContentInset;
-    long long __toolbarPosition;
-    unsigned long long __defaultPushTransition;
-    unsigned long long __defaultPopTransition;
-//    id <_UXAccessoryBarContainer> _accessoryBarContainer;
-    NSMutableArray *_internalViewControllers;
+    NSGestureRecognizer *_interactivePopGestureRecognizer;
+    Class _navigationBarClass;
+    Class _toolbarClass;
+    _UXWindowState *_windowState;
     _UXContainerView *_containerView;
     NSMutableArray *_addedConstraints;
     NSLayoutConstraint *_topConstraint;
@@ -47,7 +58,7 @@
     NSLayoutConstraint *_navigationBarTopConstraint;
     NSArray *_navigationBarConstraints;
     NSLayoutConstraint *_toolbarVerticalConstraint;
-    NSLayoutConstraint *_toolbarLeftConstraint;
+    NSLayoutConstraint *_toolbarLeadingConstraint;
     NSLayoutConstraint *_topViewControllerLeftConstraint;
     NSArray *_topViewControllerOtherConstraints;
     _UXViewControllerOneToOneTransitionContext *_currentTransitionContext;
@@ -55,17 +66,41 @@
     UXTransitionController *_defaultTransitionController;
     UXViewController *_observedViewController;
     UXViewController *_provisionalPreviousViewController;
+    NSView *_toolbarExtendedBackgroundView;
+    CDUnknownBlockType _testingTransitionAnimationCompletionHandler;
+    double __leadingContentInset;
+    long long __toolbarPosition;
+    long long _subtoolbarPosition;
+    unsigned long long __defaultPushTransition;
+    unsigned long long __defaultPopTransition;
+    id <_UXAccessoryBarContainer> _accessoryBarContainer;
 }
 
++ (id)topViewControllerObservationKeyPathsByContext;
 + (id)keyPathsForValuesAffectingPreferredContentSize;
+@property(readonly, nonatomic) BOOL isInteractive; // @synthesize isInteractive=_isInteractive;
+@property(readonly, nonatomic) BOOL isTransitioning; // @synthesize isTransitioning=_isTransitioning;
+@property(nonatomic, setter=_setHidesBackTitles:) BOOL _hidesBackTitles; // @synthesize _hidesBackTitles=__hidesBackTitles;
+@property(nonatomic) __weak id <_UXAccessoryBarContainer> accessoryBarContainer; // @synthesize accessoryBarContainer=_accessoryBarContainer;
+@property(nonatomic, setter=_setDefaultPopTransition:) unsigned long long _defaultPopTransition; // @synthesize _defaultPopTransition=__defaultPopTransition;
+@property(nonatomic, setter=_setDefaultPushTransition:) unsigned long long _defaultPushTransition; // @synthesize _defaultPushTransition=__defaultPushTransition;
+@property(nonatomic) long long subtoolbarPosition; // @synthesize subtoolbarPosition=_subtoolbarPosition;
+@property(nonatomic, setter=_setToolbarPosition:) long long _toolbarPosition; // @synthesize _toolbarPosition=__toolbarPosition;
+@property(nonatomic, setter=_setLeadingContentInset:) double _leadingContentInset; // @synthesize _leadingContentInset=__leadingContentInset;
+@property(nonatomic, getter=_isLocked, setter=_setLocked:) BOOL _locked; // @synthesize _locked=__locked;
+@property(nonatomic, getter=_isFullScreenMode, setter=_setFullScreenMode:) BOOL _fullScreenMode; // @synthesize _fullScreenMode=__fullScreenMode;
+@property(copy, nonatomic) CDUnknownBlockType testingTransitionAnimationCompletionHandler; // @synthesize testingTransitionAnimationCompletionHandler=_testingTransitionAnimationCompletionHandler;
+@property(nonatomic) BOOL shouldAnimateToolbarUpdates; // @synthesize shouldAnimateToolbarUpdates=_shouldAnimateToolbarUpdates;
+@property(readonly, nonatomic) NSView *toolbarExtendedBackgroundView; // @synthesize toolbarExtendedBackgroundView=_toolbarExtendedBackgroundView;
+@property(nonatomic, getter=isBackButtonMenuEnabled) BOOL backButtonMenuEnabled; // @synthesize backButtonMenuEnabled=_backButtonMenuEnabled;
 @property(retain, nonatomic) UXViewController *provisionalPreviousViewController; // @synthesize provisionalPreviousViewController=_provisionalPreviousViewController;
-@property(nonatomic) __weak UXViewController *observedViewController; // @synthesize observedViewController=_observedViewController;
+@property(retain, nonatomic) UXViewController *observedViewController; // @synthesize observedViewController=_observedViewController;
 @property(retain, nonatomic) UXTransitionController *defaultTransitionController; // @synthesize defaultTransitionController=_defaultTransitionController;
 @property(nonatomic) long long currentOperation; // @synthesize currentOperation=_currentOperation;
 @property(retain, nonatomic) _UXViewControllerOneToOneTransitionContext *currentTransitionContext; // @synthesize currentTransitionContext=_currentTransitionContext;
 @property(retain, nonatomic) NSArray *topViewControllerOtherConstraints; // @synthesize topViewControllerOtherConstraints=_topViewControllerOtherConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *topViewControllerLeftConstraint; // @synthesize topViewControllerLeftConstraint=_topViewControllerLeftConstraint;
-@property(retain, nonatomic) NSLayoutConstraint *toolbarLeftConstraint; // @synthesize toolbarLeftConstraint=_toolbarLeftConstraint;
+@property(retain, nonatomic) NSLayoutConstraint *toolbarLeadingConstraint; // @synthesize toolbarLeadingConstraint=_toolbarLeadingConstraint;
 @property(retain, nonatomic) NSLayoutConstraint *toolbarVerticalConstraint; // @synthesize toolbarVerticalConstraint=_toolbarVerticalConstraint;
 @property(retain, nonatomic) NSArray *navigationBarConstraints; // @synthesize navigationBarConstraints=_navigationBarConstraints;
 @property(retain, nonatomic) NSLayoutConstraint *navigationBarTopConstraint; // @synthesize navigationBarTopConstraint=_navigationBarTopConstraint;
@@ -73,29 +108,24 @@
 @property(retain, nonatomic) NSLayoutConstraint *topConstraint; // @synthesize topConstraint=_topConstraint;
 @property(retain, nonatomic) NSMutableArray *addedConstraints; // @synthesize addedConstraints=_addedConstraints;
 @property(retain, nonatomic) _UXContainerView *containerView; // @synthesize containerView=_containerView;
-@property(retain, nonatomic) NSMutableArray *internalViewControllers; // @synthesize internalViewControllers=_internalViewControllers;
-@property(readonly, nonatomic) BOOL isInteractive; // @synthesize isInteractive=_isInteractive;
-@property(readonly, nonatomic) BOOL isTransitioning; // @synthesize isTransitioning=_isTransitioning;
-@property(nonatomic, setter=_setBackBarButtonItemBordered:) BOOL _backBarButtonItemBordered; // @synthesize _backBarButtonItemBordered=__backBarButtonItemBordered;
-@property(nonatomic, setter=_setHidesBackTitles:) BOOL _hidesBackTitles; // @synthesize _hidesBackTitles=__hidesBackTitles;
-//@property(nonatomic) __weak id <_UXAccessoryBarContainer> accessoryBarContainer; // @synthesize accessoryBarContainer=_accessoryBarContainer;
-@property(nonatomic, setter=_setDefaultPopTransition:) unsigned long long _defaultPopTransition; // @synthesize _defaultPopTransition=__defaultPopTransition;
-@property(nonatomic, setter=_setDefaultPushTransition:) unsigned long long _defaultPushTransition; // @synthesize _defaultPushTransition=__defaultPushTransition;
-@property(nonatomic, setter=_setToolbarPosition:) long long _toolbarPosition; // @synthesize _toolbarPosition=__toolbarPosition;
-@property(nonatomic, setter=_setLeftContentInset:) double _leftContentInset; // @synthesize _leftContentInset=__leftContentInset;
-@property(nonatomic, getter=_isLocked, setter=_setLocked:) BOOL _locked; // @synthesize _locked=__locked;
-@property(nonatomic, getter=_isFullScreenMode, setter=_setFullScreenMode:) BOOL _fullScreenMode; // @synthesize _fullScreenMode=__fullScreenMode;
-@property(readonly, nonatomic) UXEventTracker *interactivePopEventTracker; // @synthesize interactivePopEventTracker=_interactivePopEventTracker;
+@property(retain, nonatomic) _UXWindowState *windowState; // @synthesize windowState=_windowState;
+@property(retain, nonatomic) Class toolbarClass; // @synthesize toolbarClass=_toolbarClass;
+@property(retain, nonatomic) Class navigationBarClass; // @synthesize navigationBarClass=_navigationBarClass;
+@property(readonly, nonatomic) NSGestureRecognizer *interactivePopGestureRecognizer; // @synthesize interactivePopGestureRecognizer=_interactivePopGestureRecognizer;
 @property(nonatomic) __weak id <UXNavigationControllerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic, getter=isSubtoolbarHidden) BOOL subtoolbarHidden; // @synthesize subtoolbarHidden=_subtoolbarHidden;
+@property(readonly, nonatomic) UXToolbar *subtoolbar; // @synthesize subtoolbar=_subtoolbar;
 @property(nonatomic, getter=isToolbarHidden) BOOL toolbarHidden; // @synthesize toolbarHidden=_toolbarHidden;
 @property(nonatomic, getter=isNavigationBarDetached) BOOL navigationBarDetached; // @synthesize navigationBarDetached=_navigationBarDetached;
 @property(nonatomic, getter=isNavigationBarHidden) BOOL navigationBarHidden; // @synthesize navigationBarHidden=_navigationBarHidden;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
+- (void)goBackWithMenuItem:(id)arg1;
+- (void)menuNeedsUpdate:(id)arg1;
 - (long long)positionForBar:(id)arg1;
-- (void)_endObservingTopViewController;
-- (void)_beginObservingTopViewController;
+- (id)contentRepresentingViewController;
+- (void)_endObservingCurrentTopViewController;
+- (void)_beginObservingCurrentTopViewController;
 - (id)_backItemWithTitle:(id)arg1 target:(id)arg2 action:(SEL)arg3;
-- (void)_transitionFromViewController:(id)arg1 toViewController:(id)arg2 operation:(long long)arg3;
 - (void)_addBackBarItemFromNavigationItem:(id)arg1 toNavigationItem:(id)arg2;
 - (void)_setupLayoutGuidesForViewController:(id)arg1;
 - (id)_customInteractionControllerForAnimationController:(id)arg1 transition:(unsigned long long)arg2;
@@ -106,35 +136,65 @@
 - (void)_removeConstraintsForContainedView:(id)arg1;
 - (void)_addConstraintsForContainedView:(id)arg1 leftInset:(double)arg2;
 - (void)_prepareViewController:(id)arg1 forAnimationInContext:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)_setViewControllers:(id)arg1 animated:(BOOL)arg2;
 - (id)_popToViewController:(id)arg1 transition:(unsigned long long)arg2;
 - (void)_pushViewController:(id)arg1 transition:(unsigned long long)arg2;
-- (id)popToViewController:(id)arg1 animated:(BOOL)arg2;
-- (id)popToRootViewControllerAnimated:(BOOL)arg1;
-- (id)popViewControllerAnimated:(BOOL)arg1;
-- (void)pushViewController:(id)arg1 animated:(BOOL)arg2;
+- (id)_dequeueNavigationRequest;
+- (id)_performOrEnqueueNavigationRequest:(id)arg1;
+- (BOOL)_hasNoNavigationRequests;
+- (void)_removeAllNavigationRequests;
+- (id)_checkinPopNavigationRequest:(id)arg1;
+- (void)_checkinPushNavigationRequest:(id)arg1;
+- (void)_checkinSetNavigationRequest:(id)arg1;
+- (id)_performNavigationRequest:(id)arg1;
 - (id)visibleViewController;
 - (id)topViewController;
+@property(readonly, nonatomic) UXViewController *currentTopViewController;
+- (id)popViewControllerAnimated:(BOOL)arg1;
+- (id)popToRootViewControllerAnimated:(BOOL)arg1;
+- (id)popToViewController:(id)arg1 animated:(BOOL)arg2;
+- (void)pushViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)setViewControllers:(id)arg1 animated:(BOOL)arg2;
 - (void)detachNavigationBar;
 - (void)__back:(id)arg1;
+@property(readonly, nonatomic) NSGestureRecognizer *interactivePopEventTracker;
 @property(readonly, nonatomic) UXToolbar *toolbar;
 @property(readonly, nonatomic) UXToolbar *accessoryBar;
 @property(readonly, nonatomic, getter=isAccessoryBarHidden) BOOL accessoryBarHidden;
 @property(readonly, nonatomic) UXNavigationBar *navigationBar;
-- (id)_accessoryViewController;
-- (double)_hiddenToolbarOffset;
+- (void)_updateToolbarAppearanceUsingTopViewController:(id)arg1 animated:(BOOL)arg2 duration:(double)arg3;
+- (void)_updateToolbarVisibilityUsingTopViewController:(id)arg1 animated:(BOOL)arg2 duration:(double)arg3 animateSubtree:(BOOL)arg4;
+- (void)_updateToolbarsPositionsUsingTopViewController:(id)arg1;
+- (void)_setToolbarPosition:(long long)arg1 subtoolbarPosition:(long long)arg2;
+- (void)_updateToolbarsIfNeeded;
+- (void)_invalidateToolbarsAppearance;
+- (void)_invalidateToolbarsVisibility;
+- (void)_invalidateToolbarsPositions;
+- (void)_invalidateSubtoolbarItems;
+- (void)_invalidateToolbarItems;
+- (void)_setToolbarsNeedUpdate;
+- (BOOL)_toolbarsNeedUpdate;
+- (void)performToolbarsChanges:(CDUnknownBlockType)arg1;
+- (double)_leftContentInset;
 - (double)_visibleToolbarOffset;
-- (void)_setToolbarHidden:(BOOL)arg1 animated:(BOOL)arg2 duration:(double)arg3 animateSubtree:(BOOL)arg4;
+- (double)_hiddenToolbarOffset;
+- (void)_setToolbarHidden:(BOOL)arg1 subtoolbarHidden:(BOOL)arg2 animated:(BOOL)arg3 duration:(double)arg4 animateSubtree:(BOOL)arg5;
+- (BOOL)_toolbarNeedsVerticalOffsetUpdate;
 - (void)setToolbarHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)_setAccessoryBarHidden:(BOOL)arg1;
 - (void)setNavigationBarHidden:(BOOL)arg1 animated:(BOOL)arg2;
 @property(copy, nonatomic) NSArray *viewControllers;
 - (void)setEdgesForExtendedLayout:(unsigned long long)arg1;
+- (void)addChildViewController:(id)arg1;
 - (id)transitionCoordinator;
+- (id)currentTransitionCoordinator;
 - (BOOL)_requiresWindowForTransitionPreparation;
 - (void)_prepareForAnimationInContext:(id)arg1 completion:(CDUnknownBlockType)arg2;
 - (struct NSEdgeInsets)_intrinsicLayoutInsetsForChildViewController:(id)arg1;
 - (id)_verticalToolbarLayoutConstraint;
+- (double)_toolbarVerticalOffset;
+- (double)_navigationBarVerticalOffset;
+- (void)_invalidateIntrinsicLayoutInsetsForViewController:(id)arg1;
 - (void)invalidateIntrinsicLayoutInsets;
 - (struct NSEdgeInsets)intrinsicLayoutInsets;
 - (struct CGSize)preferredContentSize;
@@ -142,18 +202,25 @@
 - (void)updateViewConstraints;
 - (void)viewDidAppear;
 - (void)viewWillAppear;
+- (void)viewDidLayout;
+- (void)viewWillLayout;
 - (void)viewDidLoad;
+- (void)moveToBeginningOfDocument:(id)arg1;
+- (void)keyDown:(id)arg1;
 - (void)scrollWheel:(id)arg1;
 - (BOOL)wantsForwardedScrollEventsForAxis:(long long)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithRootViewController:(id)arg1;
+- (id)initWithNavigationBarClass:(Class)arg1 toolbarClass:(Class)arg2;
+- (void)testing_notifyTransitionAnimationDidComplete;
+- (void)testing_installTransitionAnimationCompletionHandler:(CDUnknownBlockType)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

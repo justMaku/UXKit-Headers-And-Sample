@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXCollectionViewLayout.h"
+#import <UXKit/UXCollectionViewLayout.h>
 
-@class NSDictionary, NSMutableDictionary;
+@class NSDictionary, NSMutableDictionary, _UXFlowLayoutInfo;
 
 @interface UXCollectionViewFlowLayout : UXCollectionViewLayout
 {
@@ -27,7 +27,7 @@
     struct CGSize _headerReferenceSize;
     struct CGSize _footerReferenceSize;
     struct NSEdgeInsets _sectionInset;
-    id _data;
+    _UXFlowLayoutInfo *_data;
     struct CGSize _currentLayoutSize;
     NSMutableDictionary *_insertedItemsAttributesDict;
     NSMutableDictionary *_insertedSectionHeadersAttributesDict;

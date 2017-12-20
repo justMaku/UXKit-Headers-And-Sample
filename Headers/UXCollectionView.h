@@ -4,25 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@import AppKit;
+#import "NSScrollView.h"
 
-#import "UXCollectionViewLayout.h"
-#import "UXCollectionViewIndexPathsSet.h"
-#import "UXCollectionViewData.h"
-#import "UXCollectionViewUpdate.h"
-#import "UXCollectionViewDelegate-Protocol.h"
-#import "UXCollectionViewDataSource-Protocol.h"
-#import "UXCollectionDocumentView.h"
-#import "UXCollectionViewMutableIndexPathsSet.h"
-
-
-@class CALayer, NSArray, NSIndexPath, NSMutableArray, NSMutableDictionary, NSMutableSet, UXCollectionDocumentView, UXCollectionViewData, UXCollectionViewIndexPathsSet, UXCollectionViewLayout, UXCollectionViewMutableIndexPathsSet, UXCollectionViewUpdate, _UXCollectionViewRearrangingCoordinator;
+@class CALayer, NSArray, NSIndexPath, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<UXCollectionViewAccessibilityDelegate>, NSObject<UXCollectionViewDataSource>, NSObject<UXCollectionViewDelegate>, UXCollectionDocumentView, UXCollectionViewData, UXCollectionViewIndexPathsSet, UXCollectionViewLayout, UXCollectionViewMutableIndexPathsSet, UXCollectionViewUpdate, _UXCollectionViewRearrangingCoordinator;
 
 @interface UXCollectionView : NSScrollView
 {
     UXCollectionDocumentView *_collectionDocumentView;
     NSObject<UXCollectionViewDataSource> *_dataSource;
     NSObject<UXCollectionViewDelegate> *_delegate;
+    NSObject<UXCollectionViewAccessibilityDelegate> *_accessibilityDelegate;
     UXCollectionViewLayout *_layout;
     UXCollectionViewMutableIndexPathsSet *_indexPathsForSelectedItems;
     NSMutableDictionary *_cellReuseQueues;
@@ -67,9 +58,12 @@
     long long _layoutTransitionAnimationCount;
     BOOL _scrolling;
     BOOL _liveScrolling;
+    unsigned long long _extraNumberOfCellsToPreloadWhenScrollingStopped;
+    unsigned long long _purgingCellsThreshold;
     BOOL _involvesScrollWheel;
     BOOL _decelerating;
     BOOL _canDetectDeceleration;
+    BOOL _scrollingFromExternalControl;
     struct CGPoint _lastScrollingDistance;
     float _scrollingVelocity;
     double _lastScrollingTime;
@@ -136,11 +130,14 @@
 + (void)initialize;
 + (Class)documentClass;
 @property(readonly, nonatomic, getter=isDecelerating) BOOL decelerating; // @synthesize decelerating=_decelerating;
+@property(nonatomic) unsigned long long purgingCellsThreshold; // @synthesize purgingCellsThreshold=_purgingCellsThreshold;
+@property(nonatomic) unsigned long long extraNumberOfCellsToPreloadWhenScrollingStopped; // @synthesize extraNumberOfCellsToPreloadWhenScrollingStopped=_extraNumberOfCellsToPreloadWhenScrollingStopped;
 @property(readonly, nonatomic, getter=isScrolling) BOOL scrolling; // @synthesize scrolling=_scrolling;
 @property(nonatomic) BOOL allowsPaintingSelection; // @synthesize allowsPaintingSelection=_allowsPaintingSelection;
 @property(nonatomic) BOOL allowsLassoSelection; // @synthesize allowsLassoSelection=_allowsLassoSelection;
 @property(nonatomic) BOOL allowsContinuousSelection; // @synthesize allowsContinuousSelection=_allowsContinuousSelection;
 @property(retain, nonatomic) UXCollectionViewLayout *collectionViewLayout; // @synthesize collectionViewLayout=_layout;
+- (BOOL)isLassoSelectionInProgress;
 - (BOOL)lassoInvertsSelection;
 - (void)setLassoInvertsSelection:(BOOL)arg1;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
@@ -166,10 +163,6 @@
 - (void)_respondToDoubleClick;
 - (void)_performItemSelectionForMouseEvent:(id)arg1 onCell:(id)arg2 atIndexPath:(id)arg3;
 - (id)_selectableIndexPathForItemContainingHitView:(id)arg1;
-- (BOOL)resignFirstResponder;
-- (BOOL)becomeFirstResponder;
-- (BOOL)acceptsFirstResponder;
-- (BOOL)canBecomeKeyView;
 - (void)performBatchUpdates:(CDUnknownBlockType)arg1 completion:(CDUnknownBlockType)arg2;
 - (void)_endUpdates;
 - (void)_beginUpdates;
@@ -193,13 +186,17 @@
 - (id)_currentUpdate;
 - (void)scrollRect:(struct CGRect)arg1 toScrollPosition:(unsigned long long)arg2 withInsets:(struct NSEdgeInsets)arg3 animated:(BOOL)arg4;
 - (void)scrollToItemAtIndexPath:(id)arg1 atScrollPosition:(unsigned long long)arg2 animated:(BOOL)arg3;
-- (void)_scrollRect:(struct CGRect)arg1 toScrollPosition:(unsigned long long)arg2 withInsets:(struct NSEdgeInsets)arg3 animated:(BOOL)arg4;
+- (void)scrollToItemAtIndexPath:(id)arg1 atScrollPosition:(unsigned long long)arg2 animated:(BOOL)arg3 userInteractivelyScrolling:(BOOL)arg4;
+- (void)_scrollRect:(struct CGRect)arg1 toScrollPosition:(unsigned long long)arg2 withInsets:(struct NSEdgeInsets)arg3 animated:(BOOL)arg4 userInteractivelyScrolling:(BOOL)arg5;
 - (struct CGPoint)_scrollAmountForMovingRect:(struct CGRect)arg1 toScrollPosition:(unsigned long long)arg2 inDestinationRect:(struct CGRect)arg3;
 - (id)nextIndexPath:(id)arg1;
 - (id)previousIndexPath:(id)arg1;
 - (id)contentSupplementaryViews;
 - (id)visibleSupplementaryViews;
-- (id)_supplementaryViewsIncludingOverdrawArea:(BOOL)arg1;
+- (id)_indexPathsForVisibleSupplementaryViewsOfKind:(id)arg1;
+- (id)_visibleSupplementaryViewsOfKind:(id)arg1;
+- (id)_supplementaryViewsIncludingOverdrawArea:(BOOL)arg1 identifier:(id)arg2;
+- (void)_enumerateSupplementaryViewsIncludingOverdrawArea:(BOOL)arg1 identifier:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
 - (id)indexPathsForContentItemsInSections:(id)arg1;
 - (id)indexPathsForContentItems;
 - (id)indexPathsForVisibleItemsInSections:(id)arg1;
@@ -211,6 +208,8 @@
 - (id)_dictionaryOfIndexPathsAndContentCells;
 - (unsigned long long)numberOfContentCells;
 - (unsigned long long)numberOfVisibleCells;
+- (id)indexPathsForVisibleSupplementaryElementsOfKind:(id)arg1;
+- (id)visibleSupplementaryViewsOfKind:(id)arg1;
 - (id)viewForSupplementaryElementOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)cellForItemAtIndexPath:(id)arg1;
 - (id)indexPathForSupplementaryView:(id)arg1;
@@ -227,7 +226,7 @@
 - (void)_prepareCellsForOverdraw:(struct CGRect)arg1;
 - (void)resetScrollingOverdraw;
 - (struct CGRect)documentContentRect;
-- (void)_addControlledSubview:(id)arg1 atZIndex:(long long)arg2;
+- (void)_addControlled:(BOOL)arg1 subview:(id)arg2 atZIndex:(long long)arg3;
 - (void)updateLayout;
 - (void)_setCollectionViewLayout:(id)arg1 animated:(BOOL)arg2 isInteractive:(BOOL)arg3 completion:(CDUnknownBlockType)arg4;
 - (void)setCollectionViewLayout:(id)arg1 animated:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
@@ -249,10 +248,15 @@
 - (void)layoutSubviews;
 - (struct CGSize)contentSizeForFrameSize:(struct CGSize)arg1;
 - (struct CGSize)frameSizeForContentSize:(struct CGSize)arg1;
+- (void)windowDidResignKey:(id)arg1;
+- (void)windowDidBecomeKey:(id)arg1;
 - (void)windowDidChangeBackingProperties:(id)arg1;
 - (void)clipViewBoundsDidChange:(id)arg1;
 - (void)touchesEndedWithEvent:(id)arg1;
 - (void)touchesBeganWithEvent:(id)arg1;
+- (void)didEndScrollingFromExternalControl;
+- (void)willEndScrollingFromExternalControl;
+- (void)willStartScrollingFromExternalControl;
 - (void)scrollViewDidEndLiveScrollNotification:(id)arg1;
 - (void)scrollViewWillStartLiveScrollNotification:(id)arg1;
 - (void)_didEndScrolling:(id)arg1;
@@ -260,7 +264,7 @@
 - (void)scrollWheel:(id)arg1;
 - (void)setContentOffset:(struct CGPoint)arg1 animated:(BOOL)arg2;
 - (void)setContentOffset:(struct CGPoint)arg1;
-@property(nonatomic) struct CGSize contentSize;
+@property(nonatomic) struct CGSize contentSize; // @dynamic contentSize;
 - (void)setDocumentBounds:(struct CGRect)arg1;
 - (struct CGRect)documentBounds;
 - (struct CGSize)documentSize;
@@ -272,6 +276,10 @@
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)_viewPrepare;
 - (void)_viewCleanup;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_updateFirstResponderView;
+- (BOOL)_selectionBorderShouldUsePrimaryColor;
+- (BOOL)_highlightColorDependsOnWindowState;
 - (id)_doubleSidedAnimationsForView:(id)arg1 withStartingLayoutAttributes:(id)arg2 startingLayout:(id)arg3 endingLayoutAttributes:(id)arg4 endingLayout:(id)arg5 withAnimationSetup:(CDUnknownBlockType)arg6 animationCompletion:(CDUnknownBlockType)arg7 enableCustomAnimations:(BOOL)arg8 customAnimationsType:(unsigned long long)arg9;
 - (void)_updateCellsInRect:(struct CGRect)arg1 createIfNecessary:(BOOL)arg2;
 - (void)_updateVisibleCellsNow:(BOOL)arg1;
@@ -321,6 +329,7 @@
 - (id)indexPathsForSelectedItems;
 - (BOOL)_dataSourceImplementsNumberOfSections;
 - (void)_reloadDataIfNeeded;
+@property(nonatomic) __weak NSObject<UXCollectionViewAccessibilityDelegate> *accessibilityDelegate; // @synthesize accessibilityDelegate=_accessibilityDelegate;
 @property(nonatomic) __weak NSObject<UXCollectionViewDataSource> *dataSource; // @synthesize dataSource=_dataSource;
 @property(nonatomic) __weak NSObject<UXCollectionViewDelegate> *delegate; // @synthesize delegate=_delegate;
 - (id)_visibleDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;
@@ -358,6 +367,8 @@
 @property(nonatomic) BOOL rearrangingAllowAutoscroll_;
 @property(nonatomic) BOOL rearrangingEnabled_;
 - (id)_rearrangingCoordinator;
+- (void)setContentInset:(struct NSEdgeInsets)arg1;
+- (struct NSEdgeInsets)contentInset;
 
 @end
 

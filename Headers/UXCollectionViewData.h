@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-
+#import "NSObject.h"
 
 @class NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, UXCollectionView, UXCollectionViewLayout;
 
@@ -13,7 +13,7 @@
     UXCollectionView *_collectionView;
     UXCollectionViewLayout *_layout;
     NSMapTable *_screenPageMap;
-    id _globalItems;
+    id *_globalItems;
     NSMutableDictionary *_supplementaryLayoutAttributes;
     NSMutableDictionary *_decorationLayoutAttributes;
     NSMutableDictionary *_invalidatedSupplementaryViews;
@@ -42,6 +42,7 @@
 - (id)knownDecorationElementKinds;
 - (id)knownSupplementaryElementKinds;
 - (id)existingSupplementaryLayoutAttributes;
+- (id)existingSupplementaryLayoutAttributesWithMinimalIndexPathLength:(unsigned long long)arg1;
 - (id)existingSupplementaryLayoutAttributesInSection:(long long)arg1;
 - (id)layoutAttributesForElementsInRect:(struct CGRect)arg1;
 - (id)layoutAttributesForElementsInSection:(long long)arg1;

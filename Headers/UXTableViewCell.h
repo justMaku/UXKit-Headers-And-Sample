@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXCollectionViewCell.h"
+#import <UXKit/UXCollectionViewCell.h>
 
 @class NSColor, NSLayoutConstraint, NSMutableArray, UXLabel, UXView, _UXButton;
 
@@ -17,32 +17,36 @@
     UXView *__lineView;
     UXView *_upperSpace;
     UXView *_lowerSpace;
+    NSLayoutConstraint *_leadingInsetConstraint;
+    NSLayoutConstraint *_trailingInsetConstraint;
     NSLayoutConstraint *_lineHeightConstraint;
     BOOL _highlighted;
     BOOL __highlightingForContext;
     UXView *_backgroundView;
     UXView *_selectedBackgroundView;
-    UXLabel *_textLabel;
-    UXLabel *_detailTextLabel;
     long long _accessoryType;
     UXView *_accessoryView;
     NSColor *_highlightColor;
     long long _selectionStyle;
     long long _indentationLevel;
     double _indentationWidth;
+    NSMutableArray *__addedConstraints;
+    UXLabel *_textLabel;
+    UXLabel *_detailTextLabel;
     long long __separatorStyle;
     double __separatorHeight;
     NSColor *__separatorColor;
-    NSMutableArray *__addedConstraints;
     struct NSEdgeInsets _separatorInset;
 }
 
-@property(retain, nonatomic) NSMutableArray *_addedConstraints; // @synthesize _addedConstraints=__addedConstraints;
-@property(readonly, nonatomic) UXView *internalHighlightedBackgroundView; // @synthesize internalHighlightedBackgroundView=_internalHighlightedBackgroundView;
 @property(retain, nonatomic, setter=_setSeparatorColor:) NSColor *_separatorColor; // @synthesize _separatorColor=__separatorColor;
 @property(nonatomic, setter=_setSeparatorHeight:) double _separatorHeight; // @synthesize _separatorHeight=__separatorHeight;
 @property(nonatomic, setter=_setSeparatorStyle:) long long _separatorStyle; // @synthesize _separatorStyle=__separatorStyle;
 @property(nonatomic, setter=_setHighlightingForContext:) BOOL _highlightingForContext; // @synthesize _highlightingForContext=__highlightingForContext;
+@property(retain, nonatomic) UXLabel *detailTextLabel; // @synthesize detailTextLabel=_detailTextLabel;
+@property(retain, nonatomic) UXLabel *textLabel; // @synthesize textLabel=_textLabel;
+@property(retain, nonatomic) NSMutableArray *_addedConstraints; // @synthesize _addedConstraints=__addedConstraints;
+@property(readonly, nonatomic) UXView *internalHighlightedBackgroundView; // @synthesize internalHighlightedBackgroundView=_internalHighlightedBackgroundView;
 @property(nonatomic) struct NSEdgeInsets separatorInset; // @synthesize separatorInset=_separatorInset;
 @property(nonatomic) double indentationWidth; // @synthesize indentationWidth=_indentationWidth;
 @property(nonatomic) long long indentationLevel; // @synthesize indentationLevel=_indentationLevel;
@@ -51,12 +55,10 @@
 @property(retain, nonatomic) NSColor *highlightColor; // @synthesize highlightColor=_highlightColor;
 @property(retain, nonatomic) UXView *accessoryView; // @synthesize accessoryView=_accessoryView;
 @property(nonatomic) long long accessoryType; // @synthesize accessoryType=_accessoryType;
-@property(retain, nonatomic) UXLabel *detailTextLabel; // @synthesize detailTextLabel=_detailTextLabel;
-@property(retain, nonatomic) UXLabel *textLabel; // @synthesize textLabel=_textLabel;
 @property(retain, nonatomic) UXView *selectedBackgroundView; // @synthesize selectedBackgroundView=_selectedBackgroundView;
 @property(retain, nonatomic) UXView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(nonatomic) long long style; // @synthesize style=_style;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)accessibilityLabel;
 - (unsigned long long)_detailTextAlignment;
 - (void)_configureInternalAccessoryViewForType:(long long)arg1;
@@ -67,6 +69,7 @@
 @property(readonly, nonatomic) _UXButton *internalAccessoryView;
 - (void)prepareForReuse;
 - (void)setSelected:(BOOL)arg1;
+- (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)updateConstraints;
 - (void)viewDidMoveToWindow;
 - (id)initWithFrame:(struct CGRect)arg1;

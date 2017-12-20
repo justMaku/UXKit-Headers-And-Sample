@@ -4,36 +4,51 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "UXView.h"
-#import "_UXSourceSplitViewDelegate-Protocol.h"
+#import <UXKit/UXView.h>
 
-@import  AppKit;
+#import "NSAccessibilityGroup.h"
 
-@class NSBox, NSCursor, NSLayoutConstraint, NSString, _UXContainerView;
+@class NSBox, NSCursor, NSLayoutConstraint, NSString, _UXContainerView, _UXSourceSplitViewShadowView, _UXSourceSplitViewSpringLoadingView;
 
 @interface _UXSourceSplitView : UXView <NSAccessibilityGroup>
 {
-    NSLayoutConstraint *_separatorRightConstraint;
+    NSLayoutConstraint *_separatorTrailingConstraint;
     NSLayoutConstraint *_masterViewWidthConstraint;
-    BOOL _collapsed;
     BOOL _resizing;
+    BOOL _currentlySpringLoading;
+    BOOL _transientlyUncollapsed;
+    BOOL _collapsed;
+    BOOL _revealsOnEdgeHoverInFullscreen;
+    BOOL _springLoaded;
+    BOOL _wantsCollapsed;
+    BOOL _autoCollapsed;
     _UXContainerView *_masterView;
     _UXContainerView *_detailView;
-    NSBox *_separator;
     double _minimumMasterWidth;
     double _maximumMasterWidth;
+    double _minimumWidthForInlineSourceList;
     id <_UXSourceSplitViewDelegate> _delegate;
+    NSBox *_separator;
+    _UXSourceSplitViewSpringLoadingView *_leadingSpringLoadingView;
+    _UXSourceSplitViewShadowView *_leadingOverlayShadowView;
 }
 
+@property(readonly, nonatomic) BOOL autoCollapsed; // @synthesize autoCollapsed=_autoCollapsed;
+@property(readonly, nonatomic) _UXSourceSplitViewShadowView *leadingOverlayShadowView; // @synthesize leadingOverlayShadowView=_leadingOverlayShadowView;
+@property(readonly, nonatomic) _UXSourceSplitViewSpringLoadingView *leadingSpringLoadingView; // @synthesize leadingSpringLoadingView=_leadingSpringLoadingView;
+@property(readonly, nonatomic) NSBox *separator; // @synthesize separator=_separator;
 @property(nonatomic) __weak id <_UXSourceSplitViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) BOOL resizing; // @synthesize resizing=_resizing;
-@property(nonatomic) BOOL collapsed; // @synthesize collapsed=_collapsed;
+@property(nonatomic) BOOL wantsCollapsed; // @synthesize wantsCollapsed=_wantsCollapsed;
+@property(nonatomic) BOOL springLoaded; // @synthesize springLoaded=_springLoaded;
+@property(nonatomic) BOOL revealsOnEdgeHoverInFullscreen; // @synthesize revealsOnEdgeHoverInFullscreen=_revealsOnEdgeHoverInFullscreen;
+@property(nonatomic) double minimumWidthForInlineSourceList; // @synthesize minimumWidthForInlineSourceList=_minimumWidthForInlineSourceList;
 @property(nonatomic) double maximumMasterWidth; // @synthesize maximumMasterWidth=_maximumMasterWidth;
 @property(nonatomic) double minimumMasterWidth; // @synthesize minimumMasterWidth=_minimumMasterWidth;
-@property(readonly, nonatomic) NSBox *separator; // @synthesize separator=_separator;
+@property(readonly, nonatomic) BOOL collapsed; // @synthesize collapsed=_collapsed;
+@property(readonly, nonatomic) BOOL transientlyUncollapsed; // @synthesize transientlyUncollapsed=_transientlyUncollapsed;
 @property(readonly, nonatomic) _UXContainerView *detailView; // @synthesize detailView=_detailView;
 @property(readonly, nonatomic) _UXContainerView *masterView; // @synthesize masterView=_masterView;
-- (void)cxx_destruct;
+- (void).cxx_destruct;
 - (id)accessibilityRole;
 - (id)accessibilityChildren;
 - (id)accessibilitySplitters;
@@ -43,18 +58,28 @@
 - (void)mouseDown:(id)arg1;
 - (void)resetCursorRects;
 - (id)hitTest:(struct CGPoint)arg1;
+- (void)layout;
+- (BOOL)_canSpringLoad;
+- (BOOL)_springLoading:(BOOL)arg1;
+- (void)_setCollapsed:(BOOL)arg1 shouldLayoutSubtree:(BOOL)arg2;
+- (void)_didChangeTransientlyUncollapsed;
+- (BOOL)_shouldBeCollapsed;
 - (void)_endSeparatorLiveResize;
 - (void)_startSeparatorLiveResize;
 - (void)_resizeToWidth:(double)arg1;
 @property(readonly, nonatomic) NSCursor *separatorCursor;
-- (void)setCollapsed:(BOOL)arg1 animated:(BOOL)arg2 completion:(CDUnknownBlockType)arg3;
+@property(readonly, nonatomic) UXView *subviewToReveal;
+- (void)setTransientlyUncollapsed:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)didChangeCollapsed;
+@property(readonly, nonatomic) double leadingContentInset;
+- (double)leadingContentInsetForWantsCollapsed:(BOOL)arg1;
 @property(nonatomic) double masterWidth;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
-@property(readonly) NSUInteger hash;
+@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end
